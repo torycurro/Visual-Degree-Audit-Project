@@ -1,0 +1,19 @@
+1st version: system would be able to list all courses 
+Implement and test
+2nd version: system would be able to list all prerequisites
+Implement and test
+3nd version: system will be able to display all course in correct (suggested) semesters
+Implement and test
+4th  version: system will be able to connect all prerequisites to courses
+Implement and test
+5th version: system will illuminate with colors depending on completion and grades (switch)
+Implement and test
+6th version: system will display the complete flow chart
+Implement and test
+7th version: table will be created with student information
+Implement and test
+8th version: system will display a username and password prompt
+Implement and test
+9th version: system will be have the correct courses for each of the users
+Implement and test
+10th version: system will illuminate the correct color for different grades depending on the student
