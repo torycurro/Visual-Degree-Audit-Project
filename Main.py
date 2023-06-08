@@ -157,3 +157,16 @@ instructoruser.displayflow_student8()
 instructoruser.displayflow_student9()
 instructoruser.displayflow_student10()
 print()
+
+# PROMPTING USERNAME AND PASSWORD
+print("---LOGIN SCREEN---")
+username = print("Username: ")
+password = print("Password: ")
+
+# IF USERNAME DOES NOT EXIST
+print ("TEST: Username does not exist. Please try again.")
+print()
+
+# IF PASSWORD IS INCORRECT
+print ("TEST: Password is incorrect. Please try again.")
+print()
