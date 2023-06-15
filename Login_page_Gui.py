@@ -7,7 +7,8 @@ from turtle import width
 from PIL import ImageTk, Image  
 from tkinter import messagebox
 
-loginPage = Tk();
+loginPage = tkinter.Tk()
+
 #title of the page
 loginPage.title('Login')
 #icon picture
