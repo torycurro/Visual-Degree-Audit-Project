@@ -1,3 +1,4 @@
+#Collin Paquin - Version 62123.546
 import sqlite3
 
 # Establishing a connection to the SQLite database
