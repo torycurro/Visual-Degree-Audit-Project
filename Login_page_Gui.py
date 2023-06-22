@@ -3,6 +3,7 @@ from re import M
 from tkinter import *
 import tkinter
 from turtle import width
+import sqlite3
 #pip install pillow
 from PIL import ImageTk, Image  
 from tkinter import messagebox
