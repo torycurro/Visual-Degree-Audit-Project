@@ -33,28 +33,25 @@ class User: # TC: this is the intro
 
 # Creation of Child Class (Student)
 class Student(User):
-    def displayflow_student1(self):
-        print("display the first students flow chart")
-    def add_class(self):
-        print("Here they can add a class")
-    def delete_class(self):
-        print("Here they can delete a class")
+    def displaydegreeaudit(self):
+        print("TEST: Display the student's degree audit here")
 
 # Creation of Child Class (Instructor)
 class Instructor(User):
-    def displayflow_student1(self):
-        print("display the first students flow chart")
+    def displaydegreeaudit_students(self):
+        print("TEST: Display the student's degree audit here")
 
 # Creation of Child Class (Admin)
 class Admin(User):
-    def displayflow_student1(self):
-        print("display the first students flow chart")
-    def add_class(self):
-        print("Here they can add a class")
-    def delete_class(self):
-        print("Here they can delete a class")
+    def displaydegreeaudit_students(self):
+        print("TEST: Display the student's degree audit here")
+    def editdegreeaudit(self):
+        print("TEST: Permission to edit degree audit")
+    def adduser(self):
+        print("TEST: Functionality to add new user")
+    def removeuser(self):
+        print("TEST: Functionality to remove existing user")
     
-    # be able to change 
 
 def create_table():
     print("Creating a new table.")
@@ -371,21 +368,17 @@ print()
 adminuser = Admin("Jim", "Joe", "654") #make dean
 #dont display just change  (dean, academic cordinator, etc. ) be able to change the pre-req the arrow will be deleted 
 adminuser.intro()
-adminuser.displayflow_student1()
-adminuser.add_class()
-adminuser.delete_class()
+adminuser.displaydegreeaudit_students()
 print() 
 
 # Student Demonstration
 studentuser = Student("John", "Doe", "123")
 studentuser.intro()
-studentuser.displayflow_student1()
-studentuser.add_class()
-studentuser.delete_class()
+studentuser.displaydegreeaudit()
 print()
 
 # Instructor Demonstration
 #just view 
 instructoruser = Instructor("Jeremy", "Smith", "456")
-instructoruser.displayflow_student1()
+instructoruser.displaydegreeaudit_students()
 print()
