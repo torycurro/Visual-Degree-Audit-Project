@@ -6,8 +6,8 @@ from poplib import CR
 import sqlite3
 from subprocess import CREATE_NEW_PROCESS_GROUP
 
-database = sqlite3.connect("Visual-Degree-Audit-Project/degreeaudit.db")
-cursor = database.cursor()
+#database = sqlite3.connect("Visual-Degree-Audit-Project/degreeaudit.db")
+#cursor = database.cursor()
 
 # Creation of Parent Class (User)
 class User: # TC: this is the intro
