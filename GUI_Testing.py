@@ -1,12 +1,12 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import PhotoImage, messagebox
 
 class MainApplication(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Login System")
         self.geometry("300x200")
-        
+        self.iconphoto(False, PhotoImage(file = 'Images_for_Gui/images.png'))
         self.login_frame = LoginFrame(self)
         self.home_frame = HomeFrame(self)
         self.profile_frame = ProfileFrame(self)
