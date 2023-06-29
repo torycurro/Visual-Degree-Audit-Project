@@ -1,9 +1,10 @@
 import sqlite3
 
 # Establishing a connection to the SQLite database
-connection = sqlite3.connect("DegreeViz.db")
+connection = sqlite3.connect("DegreeViz-2R2.db")
 cursor = connection.cursor()
- 
+
+
 class User:
     def __init__(self, wnumber, email, password, last_name, first_name):
         self.wnumber = wnumber
@@ -46,6 +47,7 @@ class Admin(User):
     def display_admin_info(self):
         self.display_user_info()
 
+
 # Function to check access
 def check_access(email, password):
     query = "SELECT UserType, Wnumber, LastName, FirstName, CatalogYear FROM Users WHERE Email = ? AND Password = ?"
@@ -72,8 +74,15 @@ def check_access(email, password):
                 "Professor options: \n1. Display a student's degree audit\n2. Update grades\nChoose an option (1/2): ")
             if professor_options == "1":
                 student_wnumber = input("Enter the student's Wnumber: ")
-                student = Student(student_wnumber, "", "", "", "", 0)
-                professor.display_student_degree_audit(student)
+                query = "SELECT Email, Password, LastName, FirstName FROM Users WHERE Wnumber = ?"
+                cursor.execute(query, (student_wnumber,))
+                student_result = cursor.fetchone()
+                if student_result:
+                    student_email, student_password, student_last_name, student_first_name = student_result
+                    student = Student(student_wnumber, student_email, student_password, student_last_name, student_first_name, 0)
+                    professor.display_student_degree_audit(student)
+                else:
+                    print("Student not found.")
             elif professor_options == "2":
                 print("Updating grades...")
             else:
@@ -101,6 +110,7 @@ def check_access(email, password):
             print("Invalid user type.")
     else:
         print("Access Denied")
+
 
 # Getting input from the user
 user_email = input("Enter your email: ")
