@@ -61,6 +61,7 @@ class LoginFrame(tk.Frame):
         
         DbConnect = sqlite3.connect("DegreeViz.db")
         db = DbConnect.cursor()
+<<<<<<< HEAD
         db.execute("SELECT 1 FROM Users  WHERE Email = ? and Password = ? ", (username, password))
         result = db.fetchone()
         if result:
@@ -73,6 +74,14 @@ class LoginFrame(tk.Frame):
         else:
             messagebox.showerror("Login Failed", "Invalid username or password.") 
              
+=======
+        for column in db.execute("SELECT * FROM Users WHERE Email = ? and Password = ? ", (username, password)):
+            print(column[5])
+            if column[5] == 'S':
+                self.master.show_home_frame()
+            else:
+                messagebox.showerror("Login Failed", "Invalid username or password.")
+>>>>>>> 9564f460f5d0dfa70d5c70133d12bbc7ee1314a5
 
         # Perform login validation here (e.g., check against a database)
         # For simplicity, we'll use a dummy check
@@ -81,7 +90,11 @@ class LoginFrame(tk.Frame):
 
 class HomeFrame(tk.Frame):
     def __init__(self, master):
+<<<<<<< HEAD
         super().__init__(master, )
+=======
+        super().__init__(master, width = 350, height = 500, bg="white")
+>>>>>>> 9564f460f5d0dfa70d5c70133d12bbc7ee1314a5
         
         self.label = tk.Label(self, text="Home Page")
         self.label.pack(pady=10)
