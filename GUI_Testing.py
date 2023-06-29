@@ -1,11 +1,15 @@
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
+import sqlite3
+
 
 class MainApplication(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Login System")
-        self.geometry("300x200")
+        width_screen= self.winfo_screenwidth()
+        height_screen= self.winfo_screenheight()
+        self.geometry("%dx%d" % (width_screen, height_screen))
         self.iconphoto(False, PhotoImage(file = 'Images_for_Gui/images.png'))
         self.login_frame = LoginFrame(self)
         self.home_frame = HomeFrame(self)
@@ -14,7 +18,9 @@ class MainApplication(tk.Tk):
         self.show_login_frame()
         
     def show_login_frame(self):
-        self.login_frame.pack()
+        width_screen= self.winfo_screenwidth()
+        height_screen= self.winfo_screenheight()
+        self.login_frame.place(x=((width_screen/2) -200),y=((height_screen/2) -380))
         self.home_frame.pack_forget()
         self.profile_frame.pack_forget()
         
@@ -31,39 +37,45 @@ class MainApplication(tk.Tk):
 
 class LoginFrame(tk.Frame):
     def __init__(self, master):
-        super().__init__(master)
+        super().__init__(master, width = 350, height = 500, bg="white")
         
-        self.label = tk.Label(self, text="Login Page")
-        self.label.pack(pady=10)
+        self.label = tk.Label(self, text="Enter Username & Password", font=('Times',14), bg="white")
+        self.label.place(x=20, y=40)
         
-        self.username_label = tk.Label(self, text="Username:")
-        self.username_label.pack()
-        self.username_entry = tk.Entry(self)
-        self.username_entry.pack()
+        self.username_label = tk.Label(self, text="Username:", font=('Times',12), bg="white")
+        self.username_label.place(x=20, y=80)
+        self.username_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
+        self.username_entry.place(x=20, y=110)
         
-        self.password_label = tk.Label(self, text="Password:")
-        self.password_label.pack()
-        self.password_entry = tk.Entry(self, show="*")
-        self.password_entry.pack()
+        self.password_label = tk.Label(self, text="Password:", font=('Times',12), bg="white")
+        self.password_label.place(x=20, y=140)
+        self.password_entry = tk.Entry(self, show="*", highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
+        self.password_entry.place(x=20, y=170)
         
-        self.login_button = tk.Button(self, text="Login", command=self.login)
-        self.login_button.pack(pady=10)
+        self.login_button = tk.Button(self, text="Login", bg="red", fg="white", width=17, font=('Times',24), bd=0, command=self.login)
+        self.login_button.place(x=20, y=210)
         
     def login(self):
         username = self.username_entry.get() 
         password = self.password_entry.get()
         
+        DbConnect = sqlite3.connect("DegreeViz.db")
+        db = DbConnect.cursor()
+        for column in db.execute("SELECT * FROM Users WHERE Email = ? and Password = ? ", (username, password)):
+            print(column[5])
+            if column[5] == 'S':
+                self.master.show_home_frame()
+            else:
+                messagebox.showerror("Login Failed", "Invalid username or password.")
+
         # Perform login validation here (e.g., check against a database)
         # For simplicity, we'll use a dummy check
-        if username == "admin" and password == "password":
-            self.master.show_home_frame()
-        else:
-            messagebox.showerror("Login Failed", "Invalid username or password.")
+        
 
 
 class HomeFrame(tk.Frame):
     def __init__(self, master):
-        super().__init__(master)
+        super().__init__(master, width = 350, height = 500, bg="white")
         
         self.label = tk.Label(self, text="Home Page")
         self.label.pack(pady=10)

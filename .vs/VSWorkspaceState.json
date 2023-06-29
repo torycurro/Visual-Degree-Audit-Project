@@ -1,14 +1,7 @@
 {
   "ExpandedNodes": [
-<<<<<<< HEAD
-    "",
-    "\\Images_for_Gui"
-  ],
-  "SelectedNode": "\\Login_page_Gui.py",
-=======
     ""
   ],
-  "SelectedNode": "\\origin.py",
->>>>>>> main
+  "SelectedNode": "\\GUI_Testing.py",
   "PreviewInSolutionExplorer": false
 }
