@@ -315,6 +315,19 @@ def delete_data():
     deleteText = "DELETE FROM " + databases[dbSelection] + " WHERE " + databasesKeyVal[dbSelection] + " = " + deleteSelection;
     cursor.execute(deleteText)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 # MAIN LOOP FOR FILE EXECUTION
 exit = False
 while (exit == False):
