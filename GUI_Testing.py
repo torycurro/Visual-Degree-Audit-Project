@@ -1,7 +1,11 @@
+
+from tkinter import *
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
+from PIL import ImageTk, Image
 import sqlite3
 
+page =1
 
 class MainApplication(tk.Tk):
     def __init__(self):
@@ -11,23 +15,40 @@ class MainApplication(tk.Tk):
         height_screen= self.winfo_screenheight()
         self.geometry("%dx%d" % (width_screen, height_screen))
         self.iconphoto(False, PhotoImage(file = 'Images_for_Gui/images.png'))
+        self.bg = ImageTk.PhotoImage(file="Images_for_Gui\wit-background.png")
+        my_canvas = Canvas(self, width = width_screen, height = height_screen)
+        my_canvas.pack(fill="both", expand=True)
+        def resizer(event):
+           global bg1, resized_bg, new_bg
+           bg1 = Image.open("wit-background.png")
+           resized_bg = bg1.resize((event.width, event.height), Image.ANTIALIAS)
+           new_bg = ImageTk.PhotoImage(resized_bg)
+           self.my_canvas.create_image(0,0, image = new_bg, anchor='nw')
+        my_label = Label(self, image = self.bg).place(x=0, y=0, relwidth=1, relheight=1)
+        self.bind('<Return>', resizer)
+            
         self.login_frame = LoginFrame(self)
         self.home_frame = HomeFrame(self)
         self.profile_frame = ProfileFrame(self)
         
         self.show_login_frame()
         
+
+        
     def show_login_frame(self):
         width_screen= self.winfo_screenwidth()
-        height_screen= self.winfo_screenheight()
+        height_screen= self.winfo_screenheight()              
         self.login_frame.place(x=((width_screen/2) -200),y=((height_screen/2) -380))
-        self.home_frame.pack_forget()
-        self.profile_frame.pack_forget()
+        self.home_frame.place_forget()
+        self.profile_frame.place_forget()
+       
         
     def show_home_frame(self):
-        self.login_frame.pack_forget()
-        self.home_frame.pack()
-        self.profile_frame.pack_forget()
+        width_screen= self.winfo_screenwidth()
+        height_screen= self.winfo_screenheight()
+        self.login_frame.place_forget()
+        self.home_frame.place(x=((width_screen/2) -200),y=((height_screen/2) -380))
+        self.profile_frame.place_forget()
         
     def show_profile_frame(self):
         self.login_frame.pack_forget()
@@ -62,10 +83,18 @@ class LoginFrame(tk.Frame):
         DbConnect = sqlite3.connect("DegreeViz.db")
         db = DbConnect.cursor()
         db.execute("SELECT 1 FROM Users WHERE Email = ? and Password = ? ", (username, password))
-        result= db.fetchone()
-        if result:
+        checkCredentials= db.fetchone()
+        if checkCredentials:
             for column in db.execute("SELECT * FROM Users WHERE Email = ? and Password = ? ", (username, password)):
-                if column[5] == 'S':
+                usertype= column[5];
+                if  usertype== 'S':
+                    page=2
+                    self.master.show_home_frame()
+                elif usertype == 'P':
+                    page=3
+                    self.master.show_home_frame()
+                elif usertype == 'A':
+                    page=4
                     self.master.show_home_frame()
                 else:
                     messagebox.showerror("Invalid user!")
@@ -73,21 +102,29 @@ class LoginFrame(tk.Frame):
             messagebox.showerror("Login Failed", "Invalid username or password.")          
         # Perform login validation here (e.g., check against a database)
         # For simplicity, we'll use a dummy check
-        
-
+    
+class AdminPage(tk.Frame):
+    def __init__(self, master):
+        super(). __init__(master)
 
 class HomeFrame(tk.Frame):
     def __init__(self, master):
-        super().__init__(master, width = 350, height = 500, bg="white")
+        super().__init__(master, width = 350, height = 500, bg="black")
         
-        self.label = tk.Label(self, text="Home Page")
-        self.label.pack(pady=10)
+        self.label = tk.Label(self, text="Search Student Degree Audit", width=34, font=('Times',12))
+        self.label.place(x=20, y=40)
         
-        self.profile_button = tk.Button(self, text="View Profile", command=self.view_profile)
-        self.profile_button.pack(pady=5)
+        self.student_first_name_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
+        self.profile_button.place(x=20, y=80)
+
+        self.student_Last_name_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
+        self.profile_button.place(x=20, y=120)
+
+        self.student_ID_number_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
+        self.profile_button.place(x=20, y=150)
         
-        self.logout_button = tk.Button(self, text="Logout", command=self.logout)
-        self.logout_button.pack(pady=5)
+        self.logout_button = tk.Button(self, text="Logout", width=34, font=('Times',12), command=self.logout)
+        self.logout_button.place(x=20, y=180)
         
     def view_profile(self):
         self.master.show_profile_frame()
