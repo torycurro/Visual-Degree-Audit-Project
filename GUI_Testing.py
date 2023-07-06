@@ -107,7 +107,6 @@ class AdminPage(tk.Frame):
 class InstructorFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master, width = 350, height = 500, bg="white")
-        
         self.label = tk.Label(self, text="Search Student Degree Audit", width=32, font=('Times',14), bg="white")
         self.label.place(x=20, y=40)
 
