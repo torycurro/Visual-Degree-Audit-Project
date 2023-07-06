@@ -34,16 +34,15 @@ year_columns = []
 years = ["2020", "2021", "2022", "2023", "2024"]
 semesters = ["Fall", "Spring"]
 
-column_width = (canvas_width - 100) // len(years)
+column_width = (canvas_width - 100) // (len(years) * len(semesters))
 column_height = canvas_height - 100
 x_offset = 50
 y_offset = 50
 
 for i, year in enumerate(years):
-    x = x_offset + i * column_width
-
     for j, semester in enumerate(semesters):
-        y = y_offset + j * column_height
+        x = x_offset + (i * len(semesters) + j) * column_width
+        y = y_offset
         subheader = f"{year} {semester}"
         canvas.create_text(x + column_width // 2, y + 20, text=subheader, anchor="center")
         canvas.create_rectangle(x, y + 40, x + column_width, y + column_height, fill="white")
