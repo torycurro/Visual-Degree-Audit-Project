@@ -86,7 +86,7 @@ class LoginFrame (tkinter.Frame):
 class StudentFrame (tkinter.Frame):
      def __init__(self, master):
         super().__init__(master, width = 350, height = 500, bg="white")
-        self.label = tkinter.Label(self, text="Main Menu", font=('Times',14), bg="white")
+        self.label = tkinter.Label(self, text="Admin Page", font=('Times',14), bg="white")
         self.label.place(x=20, y=40)
         
         self.Search_button = tkinter.Button(self, text="Search Courses", bg="red", fg="white", width=17, font=('Times',24), bd=0, command=self.login)
@@ -100,6 +100,63 @@ class StudentFrame (tkinter.Frame):
 
         self.Print_button = tkinter.Button(self, text="Print Schedule", bg="red", fg="white", width=17, font=('Times',24), bd=0, command=self.login)
         self.Print_button.place(x=20, y=180)
+
+class Search_CoursesFrame (tkinter.Frame):
+     def __init__(self, master):
+        super().__init__(master, width = 350, height = 500, bg="white")
+        self.All_button = tkinter.Button(self, text="All Courses", bg="red", fg="white", width=17, font=('Times',24), bd=0, command=self.login)
+        self.All_button.place(x=20, y=210)
+     def go_back(self):
+        self.master.show_home_frame()
+        DbConnect = sqlite3.connect("Database/tables.db")
+        db= DbConnect.cursor()      
+        db.execute("Courses", (courses))
+        
+        result = db.fetchone()
+        index = db.fetchall()
+
+        for row in index:
+            print(row)
+
+class Add_CoursesFrame (tkinter.Frame):
+     def __init__(self, master):
+        super().__init__(master, width = 350, height = 500, bg="white")
+     def __init__(self, master):
+        super().__init__(master, width = 350, height = 500, bg="white")
+        self.Select_button = tkinter.Button(self, text="Select Courses", bg="red", fg="white", width=17, font=('Times',24), bd=0, command=self.login)
+        self.Select_button.place(x=20, y=210)
+     def go_back(self):
+        self.master.show_home_frame()
+        DbConnect = sqlite3.connect("Database/tables.db")
+        db= DbConnect.cursor()      
+        db.execute("Courses", (courses))
+        
+        result = db.fetchone()
+        index = db.fetchall()
+
+        for row in index:
+            print(row)
+
+
+class Drop_CoursesFrame (tkinter.Frame):
+     def __init__(self, master):
+        super().__init__(master, width = 350, height = 500, bg="white")
+     def __init__(self, master):
+        super().__init__(master, width = 350, height = 500, bg="white")
+        self.Withdraw_button = tkinter.Button(self, text="Withdraw from Course", bg="red", fg="white", width=17, font=('Times',24), bd=0, command=self.login)
+        self.Withdraw_button.place(x=20, y=210)
+     def go_back(self):
+        self.master.show_home_frame()
+        DbConnect = sqlite3.connect("Database/tables.db")
+        db= DbConnect.cursor()      
+        db.execute("Courses", (courses))
+        
+        result = db.fetchone()
+        index = db.fetchall()
+
+        for row in index:
+            print(row)
+
 
 class Print_ScheduleFrame (tkinter.Frame):
      def __init__(self, master):
