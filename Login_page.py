@@ -18,6 +18,7 @@ class MainApplication(tk.Tk):
             
         self.login_frame = LoginFrame(self)
         self.instructor_frame = InstructorFrame(self)
+        self.AdminPage = AdminPage(self)
         self.profile_frame = ProfileFrame(self)
         
         self.show_login_frame()
@@ -30,6 +31,7 @@ class MainApplication(tk.Tk):
         self.login_frame.place(x=((width_screen/2) -200),y=((height_screen/2) -380))
         self.instructor_frame.place_forget()
         self.profile_frame.place_forget()
+        self.AdminPage.place_forget()
        
         
     def show_instructor_frame(self):
@@ -37,6 +39,15 @@ class MainApplication(tk.Tk):
         height_screen= self.winfo_screenheight()
         self.login_frame.place_forget()
         self.instructor_frame.place(x=((width_screen/2) -200),y=((height_screen/2) -380))
+        self.profile_frame.place_forget()
+        self.AdminPage.place_forget()
+
+    def show_Admin_frame(self):
+        width_screen= self.winfo_screenwidth()
+        height_screen= self.winfo_screenheight()
+        self.login_frame.place_forget()
+        self.AdminPage.place(x=((width_screen/2) -200),y=((height_screen/2) -380))
+        self.instructor_frame.place_forget()
         self.profile_frame.place_forget()
         
     def show_profile_frame(self):
@@ -81,7 +92,8 @@ class LoginFrame(tk.Frame):
                 elif usertype == 'P':                  
                     self.master.show_instructor_frame()
                 elif usertype == 'A':
-                  print("Admin Page")
+                  self.master.show_Admin_frame()
+                 
                 else:
                     messagebox.showerror("Invalid user!")
         else:
@@ -91,7 +103,33 @@ class LoginFrame(tk.Frame):
     
 class AdminPage(tk.Frame):
     def __init__(self, master):
-        super(). __init__(master)
+        super().__init__(master, width = 350, height = 500, bg="white")
+        self.label = tk.Label(self, text="Admin Frame", width=32, font=('Times',14), bg="white")
+        self.label.place(x=20, y=40)
+
+        self.logout_button = tk.Button(self, text="Logout", font=('Times',12),  bg="red", fg="white", bd=0, command=self.logout)
+        self.logout_button.place(x=285, y=30)
+        
+        self.Search_button = tk.Button(self, text="Search Students Degree Audit", bg="black", fg="white", width=25, font=('Times',12), bd=0, command=self.SearchStudentDegreeAudit)
+        self.Search_button.place(x=20, y=120)
+        
+        self.Add_button = tk.Button(self, text="Edit Students Degree Audit", bg="black", fg="white", width=25, font=('Times',12), bd=0, command=self.EditStudentDegreeAudit)
+        self.Add_button.place(x=20, y=160)
+        
+       
+    def view_profile(self):
+        self.master.show_profile_frame()
+        
+    def SearchStudentDegreeAudit(self):
+        print("Print student degree audit")
+
+    def EditStudentDegreeAudit(self):
+        print("Print student degree audit")
+
+    def logout(self):
+        self.master.show_login_frame()
+
+
 
 class InstructorFrame(tk.Frame):
     def __init__(self, master):
@@ -119,6 +157,7 @@ class InstructorFrame(tk.Frame):
         
     def view_profile(self):
         self.master.show_profile_frame()
+
         
     def SearchStudentAudit(self):
         print("Print student degree audit")
