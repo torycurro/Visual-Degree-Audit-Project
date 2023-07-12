@@ -1,4 +1,3 @@
-
 from tkinter import *
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
@@ -6,6 +5,68 @@ from PIL import ImageTk, Image
 import sqlite3
 
 page =1
+
+def check_login_credentials(email, password):
+    database = sqlite3.connect("DegreeViz-2R3.db")
+    cursor = database.cursor()
+    # Check if the email and password match in the LOGINS table
+    cursor.execute("SELECT COUNT(*) FROM Users WHERE Email=? AND Password=?", (email, password))
+    login_count = cursor.fetchone()[0]
+
+    if login_count > 0:
+        return True
+    else:
+        return False
+    database.commit()
+    database.close()
+
+def creating_user(email):
+    database = sqlite3.connect("DegreeViz-2R3.db")
+    cursor = database.cursor()
+    tables = ["Users"]
+    for i in tables:
+        query = "SELECT * FROM " + i + " WHERE Email = '" + email + "'"
+        cursor.execute(query)
+        userInfo = cursor.fetchall()
+        if (len(userInfo) > 0):
+            userType = i
+            break
+
+    loggedInUser = User()
+    loggedInUser.set_id(userInfo[0][0])
+    loggedInUser.set_first_name(userInfo[0][4])
+    loggedInUser.set_last_name(userInfo[0][3])
+    print("Welcome:")
+    loggedInUser.print_info()
+
+    database.commit()
+    database.close()
+
+class User:
+    #Set all values to empty/0 when first created
+    def __init__(self):
+        self.firstName = ""
+        self.lastName = ""
+        self.ID = 0
+    
+    def set_first_name(self, newFirstName):
+        #set the user's first name
+        self.firstName = newFirstName
+
+    def set_last_name(self, newLastName):
+        #set the user's last name
+        self.lastName = newLastName
+
+    def set_id(self, newID):
+        #set the user's ID
+        self.ID = newID
+    
+    def get_ID(self):
+        return self.ID
+
+    def print_info(self):
+        #print the user's info
+        print("Name =", self.firstName, self.lastName, "; ID =", self.ID)
 
 class MainApplication(tk.Tk):
     def __init__(self):
@@ -22,8 +83,6 @@ class MainApplication(tk.Tk):
         self.profile_frame = ProfileFrame(self)
         
         self.show_login_frame()
-        
-
         
     def show_login_frame(self):
         width_screen= self.winfo_screenwidth()
@@ -83,12 +142,12 @@ class LoginFrame(tk.Frame):
         
         DbConnect = sqlite3.connect("DegreeViz-2R3.db")
         db = DbConnect.cursor()
-        db.execute("SELECT 1 FROM Users WHERE Email = ? and Password = ? ", (username, password))
-        checkCredentials= db.fetchone()
-        if checkCredentials:
+
+        if check_login_credentials(username, password):
             for column in db.execute("SELECT * FROM Users WHERE Email = ? and Password = ? ", (username, password)):
                 usertype= column[5];
                 if  usertype== 'S':
+                    creating_user(username)
                     self.master.show_student_frame()
                 elif usertype == 'P':                  
                     self.master.show_instructor_frame()

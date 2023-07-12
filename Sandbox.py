@@ -4,7 +4,6 @@ import sqlite3
 connection = sqlite3.connect("DegreeViz-2R2.db")
 cursor = connection.cursor()
 
-
 class User:
     def __init__(self, wnumber, email, password, last_name, first_name):
         self.wnumber = wnumber
