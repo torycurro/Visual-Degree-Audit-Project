@@ -15,17 +15,6 @@ class MainApplication(tk.Tk):
         height_screen= self.winfo_screenheight()
         self.geometry("%dx%d" % (width_screen, height_screen))
         self.iconphoto(False, PhotoImage(file = 'Images_for_Gui/images.png'))
-        self.bg = ImageTk.PhotoImage(file="Images_for_Gui\wit-background.png")
-        my_canvas = Canvas(self, width = width_screen, height = height_screen)
-        my_canvas.pack(fill="both", expand=True)
-        def resizer(event):
-           global bg1, resized_bg, new_bg
-           bg1 = Image.open("wit-background.png")
-           resized_bg = bg1.resize((event.width, event.height), Image.ANTIALIAS)
-           new_bg = ImageTk.PhotoImage(resized_bg)
-           self.my_canvas.create_image(0,0, image = new_bg, anchor='nw')
-        my_label = Label(self, image = self.bg).place(x=0, y=0, relwidth=1, relheight=1)
-        self.bind('<Return>', resizer)
             
         self.login_frame = LoginFrame(self)
         self.instructor_frame = InstructorFrame(self)
@@ -80,7 +69,7 @@ class LoginFrame(tk.Frame):
         username = self.username_entry.get() 
         password = self.password_entry.get()
         
-        DbConnect = sqlite3.connect("DegreeViz.db")
+        DbConnect = sqlite3.connect("DegreeViz-2R3.db")
         db = DbConnect.cursor()
         db.execute("SELECT 1 FROM Users WHERE Email = ? and Password = ? ", (username, password))
         checkCredentials= db.fetchone()
