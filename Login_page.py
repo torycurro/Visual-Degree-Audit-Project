@@ -21,6 +21,7 @@ class MainApplication(tk.Tk):
         self.student_frame = StudentFrame(self)
         self.AdminPage = AdminPage(self)
         self.EditStudentDegreeAuditPage = EditStudentDegreeAuditPage(self)
+        self.SearchStudentDegreeAuditPage = SearchStudentDegreeAuditPage(self)
         self.profile_frame = ProfileFrame(self)
         
         self.show_login_frame()
@@ -46,6 +47,7 @@ class MainApplication(tk.Tk):
         self.profile_frame.place_forget()
         self.student_frame.place_forget()
         self.EditStudentDegreeAuditPage.place_forget()
+        self.SearchStudentDegreeAuditPage.place_forget()
 
     def show_student_frame(self):
         width_screen= self.winfo_screenwidth()
@@ -55,6 +57,7 @@ class MainApplication(tk.Tk):
         self.profile_frame.place_forget()
         self.instructor_frame.place_forget()
         self.EditStudentDegreeAuditPage.place_forget()
+        self.SearchStudentDegreeAuditPage.place_forget()
         
         self.AdminPage.place_forget()
 
@@ -66,12 +69,23 @@ class MainApplication(tk.Tk):
         self.instructor_frame.place_forget()
         self.profile_frame.place_forget()
         self.EditStudentDegreeAuditPage.place_forget()
+        self.SearchStudentDegreeAuditPage.place_forget()
 
     def show_EditStudentDegreeAuditPage(self):
         width_screen= self.winfo_screenwidth()
         height_screen= self.winfo_screenheight()
         self.login_frame.place_forget()
         self.EditStudentDegreeAuditPage.place(x=((width_screen/2) -200),y=((height_screen/2) -380))
+        self.instructor_frame.place_forget()
+        self.profile_frame.place_forget()
+        self.SearchStudentDegreeAuditPage.place_forget()
+        self.AdminPage.place_forget()
+
+    def show_SearchStudentDegreeAuditPage(self):
+        width_screen= self.winfo_screenwidth()
+        height_screen= self.winfo_screenheight()
+        self.login_frame.place_forget()
+        self.SearchStudentDegreeAuditPage.place(x=((width_screen/2) -200),y=((height_screen/2) -380))
         self.instructor_frame.place_forget()
         self.profile_frame.place_forget()
         self.AdminPage.place_forget()
@@ -148,7 +162,7 @@ class AdminPage(tk.Frame):
         self.master.show_profile_frame()
         
     def SearchStudentDegreeAudit(self):
-        print("Print student degree audit")
+        self.master.show_SearchStudentDegreeAuditPage()
 
     def EditStudentDegreeAudit(self):
         self.master.show_EditStudentDegreeAuditPage()
@@ -191,6 +205,49 @@ class EditStudentDegreeAuditPage(tk.Frame):
         
 
     def EditStudentDegreeAudit(self):
+        print("Print student degree audit")
+
+    def logout(self):
+        self.master.show_login_frame()
+        
+    def Back(self):
+        self.master.show_Admin_frame()
+
+class SearchStudentDegreeAuditPage(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master, width = 350, height = 500, bg="white")
+        
+        self.label = tk.Label(self, text="Search Student Page", font=('Times',12), bg="white")
+        self.label.place(x=20, y=30)
+
+        self.logout_button = tk.Button(self, text="Back", font=('Times',12),  bg="red", fg="white", bd=0, command=self.Back)
+        self.logout_button.place(x=285, y=30)
+
+        self.student_first_name_label = tk.Label(self, text="First Name:", font=('Times',12), bg="white")
+        self.student_first_name_label.place(x=20, y=80)
+        self.student_first_name_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14), bg="white")
+        self.student_first_name_entry.place(x=20, y=110)
+
+        self.student_Last_name_label = tk.Label(self, text="Last Name:", font=('Times',12), bg="white")
+        self.student_Last_name_label.place(x=20, y=140)
+        self.student_Last_name_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
+        self.student_Last_name_entry.place(x=20, y=170)
+
+        self.student_Id_number_label = tk.Label(self, text="ID Number:", font=('Times',12), bg="white")
+        self.student_Id_number_label.place(x=20, y=200)
+        self.student_ID_number_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
+        self.student_ID_number_entry.place(x=20, y=230)
+        self.search_button = tk.Button(self, text="Search Student", font=('Times',12),  bg="black", fg="white", bd=0, command=self.SearchStudentDegreeAudit)
+        self.search_button.place(x=20, y=270)
+  
+    def SearchStudentAudit(self):
+        print("Print student degree audit")
+           
+    def view_profile(self):
+        self.master.show_profile_frame()
+        
+
+    def SearchStudentDegreeAudit(self):
         print("Print student degree audit")
 
     def logout(self):
