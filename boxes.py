@@ -11,9 +11,16 @@ def draw_boxes_with_arrows(canvas, boxes):
 
     x = 50
     y = 100
+<<<<<<< HEAD
 
     for i in range(len(boxes)-1):
         canvas.create_rectangle(x, y, x + box_width, y + box_height, fill="green")
+=======
+    test = "pass"
+    for i in range(len(boxes)-1):
+        canvas.create_rectangle(x, y, x + box_width, y + box_height, fill="green")
+        canvas.create_text(x+20,y+20, text= test)
+>>>>>>> origin/Main_GUIDegreeVisualization
         draw_arrow(canvas, x + box_width + arrow_offset, y + box_height/2,
                    x + box_width + arrow_offset + arrow_length, y + box_height/2)
 
