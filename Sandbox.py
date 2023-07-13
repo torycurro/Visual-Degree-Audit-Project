@@ -1,22 +1,34 @@
 import sqlite3
 
 # Establishing a connection to the SQLite database
-connection = sqlite3.connect("DegreeViz-2R2.db")
+connection = sqlite3.connect("DegreeViz-2R3.db")
 cursor = connection.cursor()
 
-
 class User:
-    def __init__(self, wnumber, email, password, last_name, first_name):
-        self.wnumber = wnumber
-        self.email = email
-        self.password = password
-        self.last_name = last_name
-        self.first_name = first_name
+    #Set all values to empty/0 when first created
+    def __init__(self):
+        self.firstName = ""
+        self.lastName = ""
+        self.ID = 0
+    
+    def set_first_name(self, newFirstName):
+        #set the user's first name
+        self.firstName = newFirstName
 
-    def display_user_info(self):
-        print(f"User: {self.first_name} {self.last_name}")
-        print(f"Wnumber: {self.wnumber}")
-        print(f"Email: {self.email}")
+    def set_last_name(self, newLastName):
+        #set the user's last name
+        self.lastName = newLastName
+
+    def set_id(self, newID):
+        #set the user's ID
+        self.ID = newID
+    
+    def get_ID(self):
+        return self.ID
+
+    def print_info(self):
+        #print the user's info
+        print("Name =", self.firstName, self.lastName, "; ID =", self.ID)
 
 class Student(User):
     def __init__(self, wnumber, email, password, last_name, first_name, catalog_year):
@@ -47,77 +59,41 @@ class Admin(User):
     def display_admin_info(self):
         self.display_user_info()
 
+def check_login_credentials(email, password):
+    database = sqlite3.connect("DegreeViz-2R3.db")
+    cursor = database.cursor()
+    # Check if the email and password match in the LOGINS table
+    cursor.execute("SELECT COUNT(*) FROM Users WHERE Email=? AND Password=?", (email, password))
+    login_count = cursor.fetchone()[0]
 
-# Function to check access
-def check_access(email, password):
-    query = "SELECT UserType, Wnumber, LastName, FirstName, CatalogYear FROM Users WHERE Email = ? AND Password = ?"
-    cursor.execute(query, (email, password))
-    result = cursor.fetchone()
-
-    if result:
-        user_type, wnumber, last_name, first_name, catalog_year = result
-        print("Access Granted")
-
-        if user_type == "S":
-            student = Student(wnumber, email, password, last_name, first_name, catalog_year)
-            student.display_student_info()
-            display_degree_audit = input("Do you want to display a new Degree Audit? (Y/N): ")
-            if display_degree_audit == "Y":
-                student.display_degree_audit()
-
-            # Perform student-related actions here
-
-        elif user_type == "P":
-            professor = Professor(wnumber, email, password, last_name, first_name)
-            professor.display_professor_info()
-            professor_options = input(
-                "Professor options: \n1. Display a student's degree audit\n2. Update grades\nChoose an option (1/2): ")
-            if professor_options == "1":
-                student_wnumber = input("Enter the student's Wnumber: ")
-                query = "SELECT Email, Password, LastName, FirstName FROM Users WHERE Wnumber = ?"
-                cursor.execute(query, (student_wnumber,))
-                student_result = cursor.fetchone()
-                if student_result:
-                    student_email, student_password, student_last_name, student_first_name = student_result
-                    student = Student(student_wnumber, student_email, student_password, student_last_name, student_first_name, 0)
-                    professor.display_student_degree_audit(student)
-                else:
-                    print("Student not found.")
-            elif professor_options == "2":
-                print("Updating grades...")
-            else:
-                print("Invalid option.")
-
-            # Perform professor-related actions here
-
-        elif user_type == "A":
-            admin = Admin(wnumber, email, password, last_name, first_name)
-            admin.display_admin_info()
-            admin_options = input(
-                "Admin options: \n1. Update grades\n2. Add or remove classes\n3. Assign a professor to a class\nChoose an option (1/2/3): ")
-            if admin_options == "1":
-                print("Updating grades...")
-            elif admin_options == "2":
-                print("Adding or removing classes...")
-            elif admin_options == "3":
-                print("Assigning a professor to a class...")
-            else:
-                print("Invalid option.")
-
-            # Perform admin-related actions here
-
-        else:
-            print("Invalid user type.")
+    if login_count > 0:
+        return True
     else:
-        print("Access Denied")
+        return False
+    database.commit()
+    database.close()
 
+def creating_user(email):
+    database = sqlite3.connect("DegreeViz-2R3.db")
+    cursor = database.cursor()
+    tables = ["Users"]
+    for i in tables:
+        query = "SELECT * FROM " + i + " WHERE Email = '" + email + "'"
+        cursor.execute(query)
+        userInfo = cursor.fetchall()
+        if (len(userInfo) > 0):
+            userType = i
+            break
 
-# Getting input from the user
-user_email = input("Enter your email: ")
-user_password = input("Enter your password: ")
+    loggedInUser = User()
+    loggedInUser.set_id(userInfo[0][0])
+    loggedInUser.set_first_name(userInfo[0][4])
+    loggedInUser.set_last_name(userInfo[0][3])
+    print("Welcome:")
+    loggedInUser.print_info()
 
-# Checking access
-check_access(user_email, user_password)
+    database.commit()
+    database.close()
 
 # Closing the cursor and connection
 cursor.close()
