@@ -1,72 +1,11 @@
 from tkinter import *
+from Sandbox import *
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from PIL import ImageTk, Image
 import sqlite3
 
 page =1
-
-def check_login_credentials(email, password):
-    database = sqlite3.connect("DegreeViz-2R3.db")
-    cursor = database.cursor()
-    # Check if the email and password match in the LOGINS table
-    cursor.execute("SELECT COUNT(*) FROM Users WHERE Email=? AND Password=?", (email, password))
-    login_count = cursor.fetchone()[0]
-
-    if login_count > 0:
-        return True
-    else:
-        return False
-    database.commit()
-    database.close()
-
-def creating_user(email):
-    database = sqlite3.connect("DegreeViz-2R3.db")
-    cursor = database.cursor()
-    tables = ["Users"]
-    for i in tables:
-        query = "SELECT * FROM " + i + " WHERE Email = '" + email + "'"
-        cursor.execute(query)
-        userInfo = cursor.fetchall()
-        if (len(userInfo) > 0):
-            userType = i
-            break
-
-    loggedInUser = User()
-    loggedInUser.set_id(userInfo[0][0])
-    loggedInUser.set_first_name(userInfo[0][4])
-    loggedInUser.set_last_name(userInfo[0][3])
-    print("Welcome:")
-    loggedInUser.print_info()
-
-    database.commit()
-    database.close()
-
-class User:
-    #Set all values to empty/0 when first created
-    def __init__(self):
-        self.firstName = ""
-        self.lastName = ""
-        self.ID = 0
-    
-    def set_first_name(self, newFirstName):
-        #set the user's first name
-        self.firstName = newFirstName
-
-    def set_last_name(self, newLastName):
-        #set the user's last name
-        self.lastName = newLastName
-
-    def set_id(self, newID):
-        #set the user's ID
-        self.ID = newID
-    
-    def get_ID(self):
-        return self.ID
-
-    def print_info(self):
-        #print the user's info
-        print("Name =", self.firstName, self.lastName, "; ID =", self.ID)
 
 class MainApplication(tk.Tk):
     def __init__(self):
@@ -95,8 +34,6 @@ class MainApplication(tk.Tk):
         self.student_frame.place_forget()
         self.profile_frame.place_forget()
         self.AdminPage.place_forget()
-       
-       
         
     def show_instructor_frame(self):
         width_screen= self.winfo_screenwidth()
@@ -154,7 +91,6 @@ class MainApplication(tk.Tk):
         self.instructor_frame.pack_forget()
         self.student_frame.pack_forget()
         self.profile_frame.pack()
-        
 
 class LoginFrame(tk.Frame):
     def __init__(self, master):
@@ -191,11 +127,13 @@ class LoginFrame(tk.Frame):
                     self.master.show_student_frame()
                 elif usertype == 'P':                  
                     self.master.show_instructor_frame()
+                    creating_user(username)
                 elif usertype == 'A':
-                  self.master.show_Admin_frame()
+                    self.master.show_Admin_frame()
+                    creating_user(username)
                  
                 else:
-                    messagebox.showerror("Inv  alid user!")
+                    messagebox.showerror("Invalid user!")
         else:
             messagebox.showerror("Login Failed", "Invalid username or password.")          
         # Perform login validation here (e.g., check against a database)
@@ -304,7 +242,6 @@ class SearchStudentDegreeAuditPage(tk.Frame):
            
     def view_profile(self):
         self.master.show_profile_frame()
-        
 
     def SearchStudentDegreeAudit(self):
         print("Print student degree audit")
@@ -314,8 +251,6 @@ class SearchStudentDegreeAuditPage(tk.Frame):
         
     def Back(self):
         self.master.show_Admin_frame()
-
-
 
 class InstructorFrame(tk.Frame):
     def __init__(self, master):
@@ -335,14 +270,9 @@ class InstructorFrame(tk.Frame):
         self.student_Last_name_label.place(x=20, y=140)
         self.student_Last_name_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
         self.student_Last_name_entry.place(x=20, y=170)
-
-        self.student_Id_number_label = tk.Label(self, text="ID Number:", font=('Times',12), bg="white")
-        self.student_Id_number_label.place(x=20, y=200)
-        self.student_ID_number_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
-        self.student_ID_number_entry.place(x=20, y=230)
         
         self.logout_button = tk.Button(self, text="Search", width=34, font=('Times',12), bg="black", fg="white", bd=0, command=self.SearchStudentAudit)
-        self.logout_button.place(x=20, y=270)
+        self.logout_button.place(x=20, y=230)
         
     def SearchStudentAudit(self):
         print("Print student degree audit")
@@ -359,8 +289,6 @@ class StudentFrame(tk.Frame):
         self.Search_button = tk.Button(self, text="Print Degree Audit", width=34, font=('Times',12), bg="black", fg="white", bd=0)
         self.Search_button.place(x=20, y=100)
 
-        self.logout_button = tk.Button(self, text="Search", width=34, font=('Times',12), bg="black", fg="white", bd=0, command=self.PrintStudentAudit)
-        self.logout_button.place(x=20, y=140)
         self.logout_button = tk.Button(self, text="Logout", font=('Times',12),  bg="red", fg="white", bd=0, command=self.logout)
         self.logout_button.place(x=285, y=10)
      def PrintStudentAudit(self):
@@ -380,7 +308,6 @@ class ProfileFrame(tk.Frame):
         
     def go_back(self):
         self.master.show_home_frame()
-
 
 if __name__ == "__main__":
     app = MainApplication()
