@@ -2,6 +2,7 @@ from tkinter import *
 from Sandbox import *
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
+from tkinter.messagebox import *
 from PIL import ImageTk, Image
 from CatalogYears import *
 from CatalogYears.catalog2021 import *
@@ -12,6 +13,9 @@ page =1
 class MainApplication(tk.Tk):
     def __init__(self):
         super().__init__()
+
+        self.user_id = None
+        self.user_name = None
         self.title("Login System")
         width_screen= self.winfo_screenwidth()
         height_screen= self.winfo_screenheight()
@@ -27,6 +31,20 @@ class MainApplication(tk.Tk):
         self.profile_frame = ProfileFrame(self)
         
         self.show_login_frame()
+
+
+    def updateUserId_name(self, new_id, new_name):
+        self.user_id = new_id
+        self.user_name = new_name
+        self.login_frame = LoginFrame(self)
+        self.instructor_frame = InstructorFrame(self)
+        self.student_frame = StudentFrame(self)
+        self.AdminPage = AdminPage(self)
+        self.EditStudentDegreeAuditPage = EditStudentDegreeAuditPage(self)
+        self.SearchStudentDegreeAuditPage = SearchStudentDegreeAuditPage(self)
+        self.profile_frame = ProfileFrame(self)
+        
+    
         
     def show_login_frame(self):
         width_screen= self.winfo_screenwidth()
@@ -97,6 +115,7 @@ class MainApplication(tk.Tk):
 class LoginFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master, width = 350, height = 500, bg="White")
+
         
         self.label = tk.Label(self, text="Enter Username & Password", font=('Times',14), bg="white")
         self.label.place(x=20, y=40)
@@ -126,12 +145,18 @@ class LoginFrame(tk.Frame):
                 usertype= column[5];
                 if  usertype== 'S':
                     creating_user(username)
+                   
+                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}")
                     self.master.show_student_frame()
+                    
+
                 elif usertype == 'P':                  
                     self.master.show_instructor_frame()
+                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}")
                     creating_user(username)
                 elif usertype == 'A':
                     self.master.show_Admin_frame()
+                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}")
                     creating_user(username)
                  
                 else:
@@ -144,6 +169,11 @@ class LoginFrame(tk.Frame):
 class AdminPage(tk.Frame):
     def __init__(self, master):
         super().__init__(master, width = 350, height = 500, bg="white")
+
+        self.label = tk.Label(self, text=f"User: {self.master.user_name}", font=('Times',12), bg="white")
+        self.label.place(x=20, y=20)
+        self.label = tk.Label(self, text=f"ID: {self.master.user_id}", font=('Times',12), bg="white")
+        self.label.place(x=20, y=50)
         self.label = tk.Label(self, text="Admin Frame", width=32, font=('Times',14), bg="white")
         self.label.place(x=20, y=40)
 
@@ -155,7 +185,7 @@ class AdminPage(tk.Frame):
         
         self.Add_button = tk.Button(self, text="Edit Students Degree Audit", bg="black", fg="white", width=25, font=('Times',12), bd=0, command=self.EditStudentDegreeAudit)
         self.Add_button.place(x=70, y=160)
-        
+
        
     def view_profile(self):
         self.master.show_profile_frame()
@@ -259,6 +289,10 @@ class InstructorFrame(tk.Frame):
         super().__init__(master, width = 350, height = 500, bg="white")
         self.label = tk.Label(self, text="Search Student Degree Audit", width=32, font=('Times',14), bg="white")
         self.label.place(x=20, y=40)
+        self.label = tk.Label(self, text=f"User: {self.master.user_name}", font=('Times',12), bg="white")
+        self.label.place(x=20, y=20)
+        self.label = tk.Label(self, text=f"ID: {self.master.user_id}", font=('Times',12), bg="white")
+        self.label.place(x=20, y=50)
 
         self.logout_button = tk.Button(self, text="Logout", font=('Times',12),  bg="red", fg="white", bd=0, command=self.logout)
         self.logout_button.place(x=285, y=10)
@@ -287,7 +321,11 @@ class StudentFrame(tk.Frame):
         super().__init__(master, width = 350, height = 500, bg="white")
         self.label = tk.Label(self, text="Main Menu", width=32, font=('Times',14), bg="white")
         self.label.place(x=20, y=40)
-        
+        self.label = tk.Label(self, text=f"User: {self.master.user_name}", font=('Times',12), bg="white")
+        self.label.place(x=20, y=20)
+        self.label = tk.Label(self, text=f"ID: {self.master.user_id}", font=('Times',12), bg="white")
+        self.label.place(x=20, y=50)
+
         self.Search_button = tk.Button(self, text="Print Degree Audit", width=34, font=('Times',12), bg="black", fg="white", bd=0)
         self.Search_button.place(x=20, y=100)
 
