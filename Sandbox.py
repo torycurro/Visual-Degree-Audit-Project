@@ -1,7 +1,7 @@
 import sqlite3
 
 # Establishing a connection to the SQLite database
-connection = sqlite3.connect("DegreeViz-2R4.db")
+connection = sqlite3.connect("Database/DegreeViz-2R4.db")
 cursor = connection.cursor()
 
 class User:
@@ -60,7 +60,7 @@ class Admin(User):
         self.display_user_info()
 
 def check_login_credentials(email, password):
-    database = sqlite3.connect("DegreeViz-2R4.db")
+    database = sqlite3.connect("Database/DegreeViz-2R4.db")
     cursor = database.cursor()
     # Check if the email and password match in the LOGINS table
     cursor.execute("SELECT COUNT(*) FROM Users WHERE Email=? AND Password=?", (email, password))
@@ -74,7 +74,7 @@ def check_login_credentials(email, password):
     database.close()
 
 def creating_user(email):
-    database = sqlite3.connect("DegreeViz-2R4.db")
+    database = sqlite3.connect("Database/DegreeViz-2R4.db")
     cursor = database.cursor()
     tables = ["Users"]
     for i in tables:

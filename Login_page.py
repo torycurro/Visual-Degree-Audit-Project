@@ -3,6 +3,8 @@ from Sandbox import *
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from PIL import ImageTk, Image
+from CatalogYears import *
+from CatalogYears.catalog2021 import *
 import sqlite3
 
 page =1
@@ -116,7 +118,7 @@ class LoginFrame(tk.Frame):
         username = self.username_entry.get() 
         password = self.password_entry.get()
         
-        DbConnect = sqlite3.connect("DegreeViz-2R4.db")
+        DbConnect = sqlite3.connect("Database/DegreeViz-2R4.db")
         db = DbConnect.cursor()
 
         if check_login_credentials(username, password):
