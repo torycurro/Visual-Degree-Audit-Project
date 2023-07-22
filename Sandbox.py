@@ -28,7 +28,7 @@ class User:
 
     def print_info(self):
         #print the user's info
-        print("Name =", self.firstName, self.lastName, "; ID =", self.ID)
+        return("Name =", self.firstName, self.lastName, "; ID =", self.ID)
 
 class Student(User):
     def __init__(self, wnumber, email, password, last_name, first_name, catalog_year):
