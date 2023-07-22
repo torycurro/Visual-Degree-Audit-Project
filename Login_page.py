@@ -116,7 +116,7 @@ class LoginFrame(tk.Frame):
         username = self.username_entry.get() 
         password = self.password_entry.get()
         
-        DbConnect = sqlite3.connect("DegreeViz-2R3.db")
+        DbConnect = sqlite3.connect("DegreeViz-2R4.db")
         db = DbConnect.cursor()
 
         if check_login_credentials(username, password):
