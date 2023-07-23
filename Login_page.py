@@ -5,7 +5,9 @@ from tkinter import PhotoImage, messagebox
 from tkinter.messagebox import *
 from PIL import ImageTk, Image
 from CatalogYears import *
+from CatalogYears.catalog1819 import *
 from CatalogYears.catalog2021 import *
+from CatalogYears.catalog2324 import *
 import sqlite3
 
 page =1
@@ -16,6 +18,7 @@ class MainApplication(tk.Tk):
 
         self.user_id = None
         self.user_name = None
+        self.catalogyear = None
         self.title("Login System")
         width_screen= self.winfo_screenwidth()
         height_screen= self.winfo_screenheight()
@@ -33,9 +36,10 @@ class MainApplication(tk.Tk):
         self.show_login_frame()
 
 
-    def updateUserId_name(self, new_id, new_name):
+    def updateUserId_name(self, new_id, new_name, catalog_year):
         self.user_id = new_id
         self.user_name = new_name
+        self.catalogyear = catalog_year
         self.login_frame = LoginFrame(self)
         self.instructor_frame = InstructorFrame(self)
         self.student_frame = StudentFrame(self)
@@ -43,8 +47,6 @@ class MainApplication(tk.Tk):
         self.EditStudentDegreeAuditPage = EditStudentDegreeAuditPage(self)
         self.SearchStudentDegreeAuditPage = SearchStudentDegreeAuditPage(self)
         self.profile_frame = ProfileFrame(self)
-        
-    
         
     def show_login_frame(self):
         width_screen= self.winfo_screenwidth()
@@ -74,7 +76,6 @@ class MainApplication(tk.Tk):
         self.instructor_frame.place_forget()
         self.EditStudentDegreeAuditPage.place_forget()
         self.SearchStudentDegreeAuditPage.place_forget()
-        
         self.AdminPage.place_forget()
 
     def show_Admin_frame(self):
@@ -145,11 +146,8 @@ class LoginFrame(tk.Frame):
                 usertype= column[5];
                 if  usertype== 'S':
                     creating_user(username)
-                   
-                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}")
+                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}", f"{column[6]}")
                     self.master.show_student_frame()
-                    
-
                 elif usertype == 'P':                  
                     self.master.show_instructor_frame()
                     self.master.updateUserId_name(f"{column[0]}", f"{column[4]}")
@@ -307,10 +305,10 @@ class InstructorFrame(tk.Frame):
         self.student_Last_name_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
         self.student_Last_name_entry.place(x=20, y=170)
         
-        self.logout_button = tk.Button(self, text="Search", width=34, font=('Times',12), bg="black", fg="white", bd=0, command=self.SearchStudentAudit)
-        self.logout_button.place(x=20, y=230)
+        self.Search_button = tk.Button(self, text="Search", width=34, font=('Times',12), bg="black", fg="white", bd=0, command=self.SearchStudentAudit)
+        self.Search_button.place(x=20, y=230)
         
-    def SearchStudentAudit(self):
+    def SearchStudentAudit():
         print("Print student degree audit")
 
     def logout(self):
@@ -321,18 +319,26 @@ class StudentFrame(tk.Frame):
         super().__init__(master, width = 350, height = 500, bg="white")
         self.label = tk.Label(self, text="Main Menu", width=32, font=('Times',14), bg="white")
         self.label.place(x=20, y=40)
-        self.label = tk.Label(self, text=f"User: {self.master.user_name}", font=('Times',12), bg="white")
+        self.label = tk.Label(self, text=f"User: {self.master.catalogyear}", font=('Times',12), bg="white")
         self.label.place(x=20, y=20)
         self.label = tk.Label(self, text=f"ID: {self.master.user_id}", font=('Times',12), bg="white")
         self.label.place(x=20, y=50)
 
-        self.Search_button = tk.Button(self, text="Print Degree Audit", width=34, font=('Times',12), bg="black", fg="white", bd=0)
-        self.Search_button.place(x=20, y=100)
+        self.print_button = tk.Button(self, text="Print Degree Audit", width=34, font=('Times',12), bg="black", fg="white", bd=0, command=self.PrintStudentAudit(self.master.catalogyear, self.master.user_id, self.master.user_name))
+        self.print_button.place(x=20, y=100)
 
         self.logout_button = tk.Button(self, text="Logout", font=('Times',12),  bg="red", fg="white", bd=0, command=self.logout)
         self.logout_button.place(x=285, y=10)
-     def PrintStudentAudit(self):
-        print("Print self degree audit")
+
+     def PrintStudentAudit(self, catalogyear, wnumber, studentname):
+        if catalogyear == "Courses1819":
+            draw_degree_audit1819(wnumber, studentname)
+        elif catalogyear == "Courses2021":
+            draw_degree_audit2021(wnumber, studentname)
+        elif catalogyear == "Courses2324":
+            draw_degree_audit2324(wnumber, studentname)
+        #print("Print student degree audit")
+
      def logout(self):
         self.master.show_login_frame()
 
