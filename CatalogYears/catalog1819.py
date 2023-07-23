@@ -1,7 +1,7 @@
 import tkinter as tk
 import sqlite3
 
-def draw_degree_audit(wnumber, studentname):
+def draw_degree_audit1819(wnumber, studentname):
     def draw_arrow(canvas, x1, y1, x2, y2):
         canvas.create_line(x1, y1, x2, y2, arrow="last", fill="black")
 
@@ -40,7 +40,7 @@ def draw_degree_audit(wnumber, studentname):
             Dbconnect = sqlite3.connect("Database/DegreeViz-2R4.db")
             db = Dbconnect.cursor() 
             course = coursename
-            courseGrade = " "
+            courseGrade = 0
             for data in db.execute("SELECT * From Grades Where Course = ? and Wnumber = ? ",(str(course), studentWnumber)):
                courseGrade = int(data[2])                   
             if courseGrade >= 90:
@@ -144,8 +144,6 @@ def draw_degree_audit(wnumber, studentname):
     # Creating columns for each year
     year_columns = []
 
-
-
     years = ["Freshman", "Sophmore", "Junior", "Senior"]
     semesters = ["Fall", "Spring", "Summer"]
 
@@ -169,7 +167,7 @@ def draw_degree_audit(wnumber, studentname):
     # For demonstration purposes, I'll use a predefined list of courses.
     # Replace this with the actual data you have for the student.
 
-    Dbconnect = sqlite3.connect("DegreeViz-2R4.db")
+    Dbconnect = sqlite3.connect("Database/DegreeViz-2R4.db")
 
     db = Dbconnect.cursor()
 
