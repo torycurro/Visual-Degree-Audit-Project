@@ -323,20 +323,20 @@ class StudentFrame(tk.Frame):
         self.label.place(x=20, y=20)
         self.label = tk.Label(self, text=f"ID: {self.master.user_id}", font=('Times',12), bg="white")
         self.label.place(x=20, y=50)
-
-        self.print_button = tk.Button(self, text="Print Degree Audit", width=34, font=('Times',12), bg="black", fg="white", bd=0, command=self.PrintStudentAudit(self.master.catalogyear, self.master.user_id, self.master.user_name))
+        self.print_button = tk.Button(self, text="Print Degree Audit", width=34, font=('Times',12), bg="black", fg="white", bd=0, command=self.PrintStudentAudit)
         self.print_button.place(x=20, y=100)
 
         self.logout_button = tk.Button(self, text="Logout", font=('Times',12),  bg="red", fg="white", bd=0, command=self.logout)
         self.logout_button.place(x=285, y=10)
 
-     def PrintStudentAudit(self, catalogyear, wnumber, studentname):
+     def PrintStudentAudit(self):
+        catalogyear = str(self.master.catalogyear)
         if catalogyear == "Courses1819":
-            draw_degree_audit1819(wnumber, studentname)
+            draw_degree_audit1819(self.master.user_id, self.master.user_name)
         elif catalogyear == "Courses2021":
-            draw_degree_audit2021(wnumber, studentname)
+            draw_degree_audit2021(self.master.user_id, self.master.user_name)
         elif catalogyear == "Courses2324":
-            draw_degree_audit2324(wnumber, studentname)
+            draw_degree_audit2324(self.master.user_id, self.master.user_name)
         #print("Print student degree audit")
 
      def logout(self):
