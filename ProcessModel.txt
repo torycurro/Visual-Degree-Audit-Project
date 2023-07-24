@@ -1,4 +1,4 @@
-1st version: system would be able to list all courses 
+h1st version: system would be able to list all courses 
 Implement and test
 2nd version: system would be able to list all prerequisites
 Implement and test
