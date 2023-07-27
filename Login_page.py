@@ -34,7 +34,14 @@ class MainApplication(tk.Tk):
         self.profile_frame = ProfileFrame(self)
         
         self.show_login_frame()
-
+    
+    def get_student_Audit(self, catalogYear, studentName, student_id):
+        if catalogYear == "Courses1819":
+            draw_degree_audit1819(student_id, studentName)
+        elif catalogYear == "Courses2021":
+            draw_degree_audit2021(student_id, studentName)
+        elif catalogYear == "Courses2324":
+            draw_degree_audit2324(student_id, studentName)
 
     def updateUserId_name(self, new_id, new_name, catalog_year):
         self.user_id = new_id
@@ -47,6 +54,7 @@ class MainApplication(tk.Tk):
         self.EditStudentDegreeAuditPage = EditStudentDegreeAuditPage(self)
         self.SearchStudentDegreeAuditPage = SearchStudentDegreeAuditPage(self)
         self.profile_frame = ProfileFrame(self)
+
         
     def show_login_frame(self):
         width_screen= self.winfo_screenwidth()
@@ -148,15 +156,14 @@ class LoginFrame(tk.Frame):
                     creating_user(username)
                     self.master.updateUserId_name(f"{column[0]}", f"{column[4]}", f"{column[6]}")
                     self.master.show_student_frame()
-                elif usertype == 'P':                  
-                    self.master.show_instructor_frame()
-                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}")
+                elif usertype == 'P':                                      
+                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}","")
+                    self.master.show_instructor_frame() 
                     creating_user(username)
                 elif usertype == 'A':
+                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}"," ")
                     self.master.show_Admin_frame()
-                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}")
-                    creating_user(username)
-                 
+                    creating_user(username)                
                 else:
                     messagebox.showerror("Invalid user!")
         else:
@@ -217,12 +224,8 @@ class EditStudentDegreeAuditPage(tk.Frame):
         self.student_Last_name_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
         self.student_Last_name_entry.place(x=20, y=170)
 
-        self.student_Id_number_label = tk.Label(self, text="ID Number:", font=('Times',12), bg="white")
-        self.student_Id_number_label.place(x=20, y=200)
-        self.student_ID_number_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
-        self.student_ID_number_entry.place(x=20, y=230)
         self.edit_button = tk.Button(self, text="Search Student", font=('Times',12),  bg="black", fg="white", bd=0, command=self.EditStudentDegreeAudit)
-        self.edit_button.place(x=20, y=270)
+        self.edit_button.place(x=20, y=200)
   
     def SearchStudentAudit(self):
         print("Print student degree audit")
@@ -260,21 +263,30 @@ class SearchStudentDegreeAuditPage(tk.Frame):
         self.student_Last_name_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
         self.student_Last_name_entry.place(x=20, y=170)
 
-        self.student_Id_number_label = tk.Label(self, text="ID Number:", font=('Times',12), bg="white")
-        self.student_Id_number_label.place(x=20, y=200)
-        self.student_ID_number_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
-        self.student_ID_number_entry.place(x=20, y=230)
         self.search_button = tk.Button(self, text="Search Student", font=('Times',12),  bg="black", fg="white", bd=0, command=self.SearchStudentDegreeAudit)
-        self.search_button.place(x=20, y=270)
-  
-    def SearchStudentAudit(self):
-        print("Print student degree audit")
-           
+        self.search_button.place(x=20, y=200)
+     
     def view_profile(self):
         self.master.show_profile_frame()
 
     def SearchStudentDegreeAudit(self):
-        print("Print student degree audit")
+        firstName = self.student_first_name_entry.get()
+        lastName = self.student_Last_name_entry.get()
+
+        DbConnect = sqlite3.connect("Database/DegreeViz-2R4.db")
+        db = DbConnect.cursor()
+
+        db.execute("SELECT 1 FROM Users WHERE  FirstName = ? and LastName = ? ", (firstName, lastName))
+
+        studentExist = db.fetchone()
+        db.close()
+        if studentExist:
+            db = DbConnect.cursor()
+
+            for data in db.execute("SELECT * FROM Users  WHERE FirstName = ? and LastName = ? ", (firstName, lastName)):
+                 self.master.get_student_Audit(f"{data[6]}", firstName, f"{data[0]}")
+        else:
+            messagebox.showerror("Search Student", "Invalid Student First or last name")
 
     def logout(self):
         self.master.show_login_frame()
@@ -308,8 +320,26 @@ class InstructorFrame(tk.Frame):
         self.Search_button = tk.Button(self, text="Search", width=34, font=('Times',12), bg="black", fg="white", bd=0, command=self.SearchStudentAudit)
         self.Search_button.place(x=20, y=230)
         
-    def SearchStudentAudit():
-        print("Print student degree audit")
+    def SearchStudentAudit(self):
+
+        firstName = self.student_first_name_entry.get()
+        lastName = self.student_Last_name_entry.get()
+
+        DbConnect = sqlite3.connect("Database/DegreeViz-2R4.db")
+        db = DbConnect.cursor()
+
+        db.execute("SELECT 1 FROM Users WHERE  FirstName = ? and LastName = ? ", (firstName, lastName))
+
+        studentExist = db.fetchone()
+        db.close()
+        if studentExist:
+            db = DbConnect.cursor()
+
+            for data in db.execute("SELECT * FROM Users  WHERE FirstName = ? and LastName = ? ", (firstName, lastName)):
+                 self.master.get_student_Audit(f"{data[6]}", firstName, f"{data[0]}")
+        else:
+            messagebox.showerror("Search Student", "Invalid Student First or last name")
+
 
     def logout(self):
         self.master.show_login_frame()
@@ -319,7 +349,7 @@ class StudentFrame(tk.Frame):
         super().__init__(master, width = 350, height = 500, bg="white")
         self.label = tk.Label(self, text="Main Menu", width=32, font=('Times',14), bg="white")
         self.label.place(x=20, y=40)
-        self.label = tk.Label(self, text=f"User: {self.master.catalogyear}", font=('Times',12), bg="white")
+        self.label = tk.Label(self, text=f"User: {self.master.user_name}", font=('Times',12), bg="white")
         self.label.place(x=20, y=20)
         self.label = tk.Label(self, text=f"ID: {self.master.user_id}", font=('Times',12), bg="white")
         self.label.place(x=20, y=50)
@@ -331,12 +361,9 @@ class StudentFrame(tk.Frame):
 
      def PrintStudentAudit(self):
         catalogyear = str(self.master.catalogyear)
-        if catalogyear == "Courses1819":
-            draw_degree_audit1819(self.master.user_id, self.master.user_name)
-        elif catalogyear == "Courses2021":
-            draw_degree_audit2021(self.master.user_id, self.master.user_name)
-        elif catalogyear == "Courses2324":
-            draw_degree_audit2324(self.master.user_id, self.master.user_name)
+
+        self.master.get_student_Audit(catalogyear, self.master.user_name, self.master.user_id)
+        
         #print("Print student degree audit")
 
      def logout(self):
