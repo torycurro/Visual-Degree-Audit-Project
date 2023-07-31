@@ -150,11 +150,11 @@ class LoginFrame(tk.Frame):
                     self.master.show_student_frame()
                 elif usertype == 'P':                  
                     self.master.show_instructor_frame()
-                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}")
+                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}", f"{column[6]}")
                     creating_user(username)
                 elif usertype == 'A':
                     self.master.show_Admin_frame()
-                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}")
+                    self.master.updateUserId_name(f"{column[0]}", f"{column[4]}", f"{column[6]}")
                     creating_user(username)
                  
                 else:
