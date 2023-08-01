@@ -40,7 +40,6 @@ def draw_degree_audit2021(wnumber, studentname):
             Dbconnect = sqlite3.connect("Database/DegreeViz-2R4.db")
             db = Dbconnect.cursor() 
             course = coursename
-            courseGrade = " "
             for data in db.execute("SELECT * From Grades Where Course = ? and Wnumber = ? ",(str(course), studentWnumber)):
                courseGrade = int(data[2])                   
             if courseGrade >= 90:

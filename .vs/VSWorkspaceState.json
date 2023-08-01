@@ -1,8 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+<<<<<<< HEAD
     "\\Database"
   ],
   "SelectedNode": "\\Database\\DegreeViz-2R4.db",
+=======
+    "\\CatalogYears",
+    "\\Database"
+  ],
+  "SelectedNode": "\\Login_page.py",
+>>>>>>> f40cda844008b36c62241901d094d91981109f4d
   "PreviewInSolutionExplorer": false
 }
