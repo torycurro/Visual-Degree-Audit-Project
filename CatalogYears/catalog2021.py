@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 import tkinter as tk
 import sqlite3
 
@@ -40,6 +41,7 @@ def draw_degree_audit2021(wnumber, studentname):
             Dbconnect = sqlite3.connect("Database/DegreeViz-2R4.db")
             db = Dbconnect.cursor() 
             course = coursename
+            courseGrade = NULL
             for data in db.execute("SELECT * From Grades Where Course = ? and Wnumber = ? ",(str(course), studentWnumber)):
                courseGrade = int(data[2])                   
             if courseGrade >= 90:
@@ -50,7 +52,7 @@ def draw_degree_audit2021(wnumber, studentname):
                 return "yellow"
             elif courseGrade >= 64 and courseGrade <=69:
                 return "orange"
-            elif courseGrade < 64 :
+            elif courseGrade < 64 and courseGrade != NULL :
                 return "red"
             else:
               return "white"

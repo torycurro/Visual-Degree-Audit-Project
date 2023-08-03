@@ -41,21 +41,22 @@ def draw_degree_audit1819(wnumber, studentname):
             Dbconnect = sqlite3.connect("Database/DegreeViz-2R4.db")
             db = Dbconnect.cursor() 
             course = coursename
+            courseGrade = NULL
             for data in db.execute("SELECT * From Grades Where Course = ? and Wnumber = ? ",(str(course), studentWnumber)):
                courseGrade = int(data[2])                   
-            if courseGrade >= 90 and data[2] != NULL:
+            if courseGrade >= 90:
                db.close()
                return "green"
-            elif courseGrade >= 80 and courseGrade <= 89 and data[2] != NULL:
+            elif courseGrade >= 80 and courseGrade <= 89:
                db.close()
                return "blue"
-            elif courseGrade >= 70 and courseGrade <= 79 and data[2] != NULL:
+            elif courseGrade >= 70 and courseGrade <= 79:
                 db.close()
                 return "yellow"
-            elif courseGrade >= 64 and courseGrade <=69 and data[2] != NULL:
+            elif courseGrade >= 64 and courseGrade <=69:
                 db.close()
                 return "orange"
-            elif courseGrade < 64 and data[2] != NULL:
+            elif courseGrade < 64 and courseGrade != NULL:
                 db.close()
                 return "red"
             else:
