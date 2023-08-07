@@ -34,7 +34,8 @@ class MainApplication(tk.Tk):
         self.AdminAddCoursePage = AdminAddCoursePage(self)
         self.AdminRemoveCoursePage = AdminRemoveCoursePage(self)
         self.profile_frame = ProfileFrame(self)
-        
+        self.AdminEditPrerequistePage = AdminEditPrerequistePage(self)
+
         self.show_login_frame()
     
     def get_student_Audit(self, catalogYear, studentName, student_id):
@@ -58,6 +59,7 @@ class MainApplication(tk.Tk):
         self.AdminRemoveCoursePage = AdminRemoveCoursePage(self)
         self.SearchStudentDegreeAuditPage = SearchStudentDegreeAuditPage(self)
         self.profile_frame = ProfileFrame(self)
+        self.AdminEditPrerequistePage = AdminEditPrerequistePage(self)
 
         
     def show_login_frame(self):
@@ -68,6 +70,7 @@ class MainApplication(tk.Tk):
         self.student_frame.place_forget()
         self.profile_frame.place_forget()
         self.AdminPage.place_forget()
+        self.AdminEditPrerequistePage.place_forget()
         
     def show_instructor_frame(self):
         width_screen= self.winfo_screenwidth()
@@ -80,6 +83,7 @@ class MainApplication(tk.Tk):
         self.SearchStudentDegreeAuditPage.place_forget()
         self.AdminAddCoursePage.place_forget()
         self.AdminRemoveCoursePage.place_forget()
+        self.AdminEditPrerequistePage.place_forget()
 
     def show_student_frame(self):
         width_screen= self.winfo_screenwidth()
@@ -93,6 +97,7 @@ class MainApplication(tk.Tk):
         self.AdminPage.place_forget()
         self.AdminAddCoursePage.place_forget()
         self.AdminRemoveCoursePage.place_forget()
+        self.AdminEditPrerequistePage.place_forget()
 
     def show_Admin_frame(self):
         width_screen= self.winfo_screenwidth()
@@ -105,6 +110,7 @@ class MainApplication(tk.Tk):
         self.SearchStudentDegreeAuditPage.place_forget()
         self.AdminAddCoursePage.place_forget()
         self.AdminRemoveCoursePage.place_forget()
+        self.AdminEditPrerequistePage.place_forget()
 
 
     def show_AdminAddCoursePage(self):
@@ -118,6 +124,21 @@ class MainApplication(tk.Tk):
         self.AdminAddCoursePage.place(x=((width_screen/2) -200),y=((height_screen/2) -380))
         self.AdminRemoveCoursePage.place_forget()
         self.EditStudentDegreeAuditPage.place_forget()
+        self.AdminEditPrerequistePage.place_forget()
+
+    def show_AdminEditPrerequistePage(self):
+        width_screen= self.winfo_screenwidth()
+        height_screen= self.winfo_screenheight()
+        self.login_frame.place_forget()
+        self.instructor_frame.place_forget()
+        self.profile_frame.place_forget()
+        self.SearchStudentDegreeAuditPage.place_forget()
+        self.AdminPage.place_forget()
+        self.AdminEditPrerequistePage.place(x=((width_screen/2) -200),y=((height_screen/2) -380))
+        self.AdminRemoveCoursePage.place_forget()
+        self.EditStudentDegreeAuditPage.place_forget()
+        
+
 
     
     def show_AdminRemoveCoursePage(self):
@@ -129,9 +150,9 @@ class MainApplication(tk.Tk):
         self.SearchStudentDegreeAuditPage.place_forget()
         self.AdminPage.place_forget()
         self.AdminRemoveCoursePage.place(x=((width_screen/2) -200),y=((height_screen/2) -380))
-        
         self.AdminAddCoursePage.place_forget()
         self.EditStudentDegreeAuditPage.place_forget()
+        self.AdminEditPrerequistePage.place_forget()
 
     def show_EditStudentDegreeAuditPage(self):
         width_screen= self.winfo_screenwidth()
@@ -144,6 +165,7 @@ class MainApplication(tk.Tk):
         self.AdminPage.place_forget()
         self.AdminAddCoursePage.place_forget()
         self.AdminRemoveCoursePage.place_forget()
+        self.AdminEditPrerequistePage.place_forget()
 
     def show_SearchStudentDegreeAuditPage(self):
         width_screen= self.winfo_screenwidth()
@@ -153,6 +175,7 @@ class MainApplication(tk.Tk):
         self.instructor_frame.place_forget()
         self.profile_frame.place_forget()
         self.AdminPage.place_forget()
+        self.AdminEditPrerequistePage.place_forget()
         
     def show_profile_frame(self):
         self.login_frame.pack_forget()
@@ -295,6 +318,34 @@ class SearchStudentDegreeAuditPage(tk.Frame):
     def Back(self):
         self.master.show_Admin_frame()
 
+class AdminEditPrerequistePage(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master, width = 350, height = 500, bg="white")
+
+         
+        self.label = tk.Label(self, text="Edit Prerequiste", font=('Times',12), bg="white")
+        self.label.place(x=20, y=30)
+
+        self.logout_button = tk.Button(self, text="Back", font=('Times',12),  bg="red", fg="white", bd=0, command=self.Back)
+        self.logout_button.place(x=285, y=30)
+
+        self.CRN_label = tk.Label(self, text="Enter CRN:", font=('Times',12), bg="white")
+        self.CRN_label.place(x=20, y=70)
+        self.CRN_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
+        self.CRN_entry.place(x=20, y=110)
+
+        self.remove_button = tk.Button(self, text="Edit", font=('Times',12),  bg="black", fg="white", bd=0, command=self.EditPrerequiste)
+        self.remove_button.place(x=20, y=150)
+
+    def EditPrerequiste(self):
+      CRN = self.CRN_entry.get()
+      self.CRN_entry.delete(0, END)
+       
+        # call the Teacher class to print data base
+      Admin.Admin.Edit_Prerequiste(self, CRN)
+        
+    def Back(self):
+        self.master.show_Admin_frame()
 
 class AdminRemoveCoursePage(tk.Frame):
     def __init__(self, master):
@@ -390,7 +441,7 @@ class EditStudentDegreeAuditPage(tk.Frame):
         self.remove_button = tk.Button(self, text="Remove Course from Catalog", font=('Times',12),  bg="black", fg="white", bd=0, command=self.RemoveCoursefromsystem)
         self.remove_button.place(x=20, y=160)
 
-        self.edit_button = tk.Button(self, text="Edit Prerequisites", font=('Times',12),  bg="black", fg="white", bd=0, command=self.logout) #EditPrerequiste
+        self.edit_button = tk.Button(self, text="Edit Prerequisites", font=('Times',12),  bg="black", fg="white", bd=0, command=self.EditPrerequistefromsystem) 
         self.edit_button.place(x=20, y=200)
 
            
@@ -435,6 +486,11 @@ class EditStudentDegreeAuditPage(tk.Frame):
 
     def RemoveCoursefromsystem(self):
          self.master.show_AdminRemoveCoursePage()
+
+    def EditPrerequistefromsystem(self):
+         self.master.show_AdminEditPrerequistePage()
+
+    
 
 class InstructorFrame(tk.Frame):
     def __init__(self, master):
