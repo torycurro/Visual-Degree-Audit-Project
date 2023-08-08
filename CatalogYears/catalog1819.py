@@ -49,7 +49,7 @@ def draw_degree_audit1819(wnumber, studentname):
                return "green"
             elif courseGrade >= 80 and courseGrade <= 89:
                db.close()
-               return "blue"
+               return "cyan"
             elif courseGrade >= 70 and courseGrade <= 79:
                 db.close()
                 return "yellow"
@@ -76,6 +76,7 @@ def draw_degree_audit1819(wnumber, studentname):
                 canvas.create_rectangle(xfall, yfall, xfall + box_width, yfall + box_height, fill=fillCollor)
                 text_x = xfall + box_width / 2 
                 canvas.create_text(text_x, yfall + box_height / 2, text=boxes[i], anchor="center")
+                draw_arrow(canvas, xfall,250, xspring, 200)
                 yfall += 50
             elif (i>=5 and i<10):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)

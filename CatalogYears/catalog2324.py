@@ -49,7 +49,7 @@ def draw_degree_audit2324(wnumber, studentname):
                return "green"
             elif courseGrade >= 80 and courseGrade <= 89:
                db.close()
-               return "blue"
+               return "cyan"
             elif courseGrade >= 70 and courseGrade <= 79:
                 db.close()
                 return "yellow"

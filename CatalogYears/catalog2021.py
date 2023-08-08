@@ -47,7 +47,7 @@ def draw_degree_audit2021(wnumber, studentname):
             if courseGrade >= 90:
                return "green"
             elif courseGrade >= 80 and courseGrade <= 89:
-               return "blue"
+               return "cyan"
             elif courseGrade >= 70 and courseGrade <= 79:
                 return "yellow"
             elif courseGrade >= 64 and courseGrade <=69:
