@@ -1,12 +1,14 @@
 {
     "configurations": [
         {
-            "type": "java",
-            "name": "LoginDemo",
+            "name": "Python: Current File",
+            "type": "python",
             "request": "launch",
-            "mainClass": "LoginDemo",
-            "projectName": "Visual-Degree-Audit-Project_6cc4dc97"
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
         },
+    
         {
             "name": "Attach",
             "port": 9229,
