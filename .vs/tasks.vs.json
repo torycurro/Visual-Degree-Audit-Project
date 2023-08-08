@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-wit-background",
+      "appliesTo": "Images_for_Gui/wit-background.png",
+      "type": "launch"
+    }
+  ]
+}
