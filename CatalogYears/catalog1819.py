@@ -37,6 +37,8 @@ def draw_degree_audit1819(wnumber, studentname):
         xSNsummer = 1350
         ySNsummer = 100
 
+        
+
         def grade(coursename,studentWnumber):
             Dbconnect = sqlite3.connect("Database/DegreeViz-2R4.db")
             db = Dbconnect.cursor() 
