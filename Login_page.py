@@ -448,33 +448,6 @@ class EditStudentDegreeAuditPage(tk.Frame):
     def view_profile(self):
         self.master.show_profile_frame()
 
-    #def EditStudentDegreeAudit(self):
-    #    firstName = self.student_first_name_entry.get()
-    #    lastName = self.student_Last_name_entry.get()
-
-    #    DbConnect = sqlite3.connect("Database/DegreeViz-2R4.db")
-    #    db = DbConnect.cursor()
-
-    #    db.execute("SELECT 1 FROM Users WHERE  FirstName = ? and LastName = ? ", (firstName, lastName))
-
-    #    studentExist = db.fetchone()
-    #    db.close()
-    #    if studentExist:
-    #        db = DbConnect.cursor()
-
-    #        for data in db.execute("SELECT * FROM Users  WHERE FirstName = ? and LastName = ? ", (firstName, lastName)):
-    #             self.master.get_student_Audit(f"{data[6]}", firstName, f"{data[0]}")
-    #    else:
-    #        messagebox.showerror("Search Student", "Invalid Student First or last name")
-    #        ##
-    #    self.CRN_label = tk.Label(self, text="Enter CRN:", font=('Times',12), bg="white")
-    #    self.CRN_label.place(x=20, y=70)
-    #    self.CRN_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
-    #    self.CRN_entry.place(x=20, y=110)
-
-    #    self.search_button = tk.Button(self, text="Drop Course", font=('Times',12),  bg="black", fg="white", bd=0, command=self.SearchStudentDegreeAudit)
-    #    self.search_button.place(x=20, y=151)
-    #    ##
     def logout(self):
         self.master.show_login_frame()
         
