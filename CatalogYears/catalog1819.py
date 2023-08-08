@@ -78,13 +78,18 @@ def draw_degree_audit1819(wnumber, studentname):
                 canvas.create_rectangle(xfall, yfall, xfall + box_width, yfall + box_height, fill=fillCollor)
                 text_x = xfall + box_width / 2 
                 canvas.create_text(text_x, yfall + box_height / 2, text=boxes[i], anchor="center")
-                draw_arrow(canvas, xfall,250, xspring, 200)
+                
                 yfall += 50
             elif (i>=5 and i<10):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
                 canvas.create_rectangle(xspring, yspring, xspring + box_width, yspring + box_height, fill=fillCollor)
                 text_x = xspring +box_width / 2  
                 canvas.create_text(text_x, yspring + box_height / 2, text=boxes[i], anchor="center")
+                if convert_tup_str(boxes[i]) == "MATH1850":
+                     draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "PHYS1750":
+                    draw_arrow(canvas, xfall,300, xspring, 250)
+
                 yspring += 50
             elif (i>=10 and i<13):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
