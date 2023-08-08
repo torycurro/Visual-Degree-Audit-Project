@@ -37,6 +37,9 @@ def draw_degree_audit2324(wnumber, studentname):
         xSNsummer = 1350
         ySNsummer = 100
 
+        xHumm = 1470
+        yHumnn = 100
+
         def grade(coursename,studentWnumber):
             Dbconnect = sqlite3.connect("Database/DegreeViz-2R4.db")
             db = Dbconnect.cursor() 
@@ -46,7 +49,7 @@ def draw_degree_audit2324(wnumber, studentname):
                courseGrade = int(data[2])                   
             if courseGrade >= 90:
                db.close()
-               return "green"
+               return "olivedrab1"
             elif courseGrade >= 80 and courseGrade <= 89:
                db.close()
                return "cyan"
@@ -58,7 +61,7 @@ def draw_degree_audit2324(wnumber, studentname):
                 return "orange"
             elif courseGrade < 64 and courseGrade != NULL:
                 db.close()
-                return "red"
+                return "red2"
             else:
               db.close()
               return "white"
@@ -68,6 +71,18 @@ def draw_degree_audit2324(wnumber, studentname):
             for item in data:
                coursename = coursename + item
             return coursename
+
+        Dbconnect = sqlite3.connect("Database/DegreeViz-2R4.db")
+        db = Dbconnect.cursor()
+        db.execute("SELECT Course From Grades Where Wnumber = ? AND description = ? ", (str(wnumber), "HUMN"))
+        HumnCourses = db.fetchall()
+        
+        for i in range (len(HumnCourses)):
+             fillCollor = grade(convert_tup_str(HumnCourses[i]),wnumber)
+             canvas.create_rectangle(xHumm, yHumnn, xHumm + box_width, yHumnn + box_height, fill=fillCollor)
+             text_x = xHumm + box_width / 2 
+             canvas.create_text(text_x, yHumnn + box_height / 2, text=HumnCourses[i], anchor="center")
+             yHumnn += 50
 
         for i in range(len(boxes)):
             if i < 5:
@@ -143,8 +158,8 @@ def draw_degree_audit2324(wnumber, studentname):
     root.title(f"Degree Audit 23-24 - {wnumber} - {studentname}")
 
     canvas_width = 1500
-    canvas_height = 400
-    canvas = tk.Canvas(root, width=canvas_width, height=canvas_height)
+    canvas_height = 700
+    canvas = tk.Canvas(root, width=canvas_width+100, height=canvas_height)
     canvas.pack()
 
     # Creating columns for each year
@@ -169,6 +184,11 @@ def draw_degree_audit2324(wnumber, studentname):
             canvas.create_rectangle(x, y + 40, x + column_width, y + column_height, fill="white")
 
             year_columns.append((x, y + 40, x + column_width, y + column_height))
+
+    x_new = x_offset + len(years) * len(semesters) * column_width 
+    y_new = y_offset
+    canvas.create_text(x_new + column_width // 2, y + 20, text="HUMN/Tech", anchor="center")
+    canvas.create_rectangle(x_new, y_new + 40, x_new + column_width, y_new + column_height, fill="white")
 
         
 
