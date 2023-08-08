@@ -22,7 +22,7 @@ def draw_degree_audit1819(wnumber, studentname):
         ySfall = 100
         xSspring = 530
         ySspring = 100
-        xSsummer = 640
+        xSsummer = 650
         ySsummer = 100
         xJfall = 780
         yJfall = 100
@@ -30,7 +30,7 @@ def draw_degree_audit1819(wnumber, studentname):
         yJspring = 100
         xJsummer = 990
         yJsummer = 100
-        xSNfall = 1100
+        xSNfall = 1110
         ySNfall = 100
         xSNspring = 1230
         ySNspring = 100
