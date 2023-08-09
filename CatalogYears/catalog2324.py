@@ -98,14 +98,16 @@ def draw_degree_audit2324(wnumber, studentname):
                 text_x = xspring +box_width / 2  
                 canvas.create_text(text_x, yspring + box_height / 2, text=boxes[i], anchor="center")
                 if convert_tup_str(boxes[i]) == "MATH1850":
-                     draw_arrow(canvas, xfall,250, xspring, 200)
+                     draw_arrow(canvas, xfall,150, xspring, 150)
+                elif convert_tup_str(boxes[i]) == "ENGL2200":
+                    draw_arrow(canvas, xfall, 250,xspring,250 )
                 elif convert_tup_str(boxes[i]) == "PHYS1750":
-                    draw_arrow(canvas, xfall,300, xspring, 250)
-                    draw_arrow(canvas, xfall,250, xspring, 250)
+                    draw_arrow(canvas, xfall,200, xspring, 200)
+                    draw_arrow(canvas, xfall,150, xspring, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2250":
-                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                    draw_arrow(canvas, xspring,150, xSfall, 150)
                 elif convert_tup_str(boxes[i]) == "MATH2500":
-                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                    draw_arrow(canvas, xspring,150, xSfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2850":
                     draw_arrow(canvas, xSfall,100, xSspring, 100)
                 elif convert_tup_str(boxes[i]) == "ELEC2750":
@@ -120,15 +122,15 @@ def draw_degree_audit2324(wnumber, studentname):
                 elif convert_tup_str(boxes[i]) == "ELEC3250":
                     draw_arrow(canvas, xSspring,200, xJfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC3600":
-                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                    draw_arrow(canvas, xSfall,200, xJsummer, 250)
                 elif convert_tup_str(boxes[i]) == "ELEC4075":
                     draw_arrow(canvas, xJfall,100, xSNspring, 100)
                 elif convert_tup_str(boxes[i]) == "MATH2100":
-                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                    draw_arrow(canvas, xspring,150, xSNspring, 200)
                 elif convert_tup_str(boxes[i]) == "ENGR5500":
                     draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
                 elif convert_tup_str(boxes[i]) == "MGMT3200":
-                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                    draw_arrow(canvas, xfall,150, xSNsummer, 150)
                 elif convert_tup_str(boxes[i]) == "COOP4500":
                     draw_arrow(canvas, xJspring,100, xSNfall, 100)
 
@@ -139,14 +141,16 @@ def draw_degree_audit2324(wnumber, studentname):
                 text_x = xSfall +box_width / 2  
                 canvas.create_text(text_x, ySfall + box_height / 2, text=boxes[i], anchor="center")
                 if convert_tup_str(boxes[i]) == "MATH1850":
-                     draw_arrow(canvas, xfall,250, xspring, 200)
+                     draw_arrow(canvas, xfall,150, xspring, 150)
+                elif convert_tup_str(boxes[i]) == "ENGL2200":
+                    draw_arrow(canvas, xfall, 250,xspring,250 )
                 elif convert_tup_str(boxes[i]) == "PHYS1750":
-                    draw_arrow(canvas, xfall,300, xspring, 250)
-                    draw_arrow(canvas, xfall,250, xspring, 250)
+                    draw_arrow(canvas, xfall,200, xspring, 200)
+                    draw_arrow(canvas, xfall,150, xspring, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2250":
-                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                    draw_arrow(canvas, xspring,150, xSfall, 150)
                 elif convert_tup_str(boxes[i]) == "MATH2500":
-                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                    draw_arrow(canvas, xspring,150, xSfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2850":
                     draw_arrow(canvas, xSfall,100, xSspring, 100)
                 elif convert_tup_str(boxes[i]) == "ELEC2750":
@@ -161,15 +165,15 @@ def draw_degree_audit2324(wnumber, studentname):
                 elif convert_tup_str(boxes[i]) == "ELEC3250":
                     draw_arrow(canvas, xSspring,200, xJfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC3600":
-                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                    draw_arrow(canvas, xSfall,200, xJsummer, 250)
                 elif convert_tup_str(boxes[i]) == "ELEC4075":
                     draw_arrow(canvas, xJfall,100, xSNspring, 100)
                 elif convert_tup_str(boxes[i]) == "MATH2100":
-                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                    draw_arrow(canvas, xspring,150, xSNspring, 200)
                 elif convert_tup_str(boxes[i]) == "ENGR5500":
                     draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
                 elif convert_tup_str(boxes[i]) == "MGMT3200":
-                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                    draw_arrow(canvas, xfall,150, xSNsummer, 150)
                 elif convert_tup_str(boxes[i]) == "COOP4500":
                     draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySfall += 50
@@ -179,14 +183,16 @@ def draw_degree_audit2324(wnumber, studentname):
                 text_x =  xSspring +box_width / 2  
                 canvas.create_text(text_x, ySspring + box_height / 2, text=boxes[i], anchor="center")
                 if convert_tup_str(boxes[i]) == "MATH1850":
-                     draw_arrow(canvas, xfall,250, xspring, 200)
+                     draw_arrow(canvas, xfall,150, xspring, 150)
+                elif convert_tup_str(boxes[i]) == "ENGL2200":
+                    draw_arrow(canvas, xfall, 250,xspring,250 )
                 elif convert_tup_str(boxes[i]) == "PHYS1750":
-                    draw_arrow(canvas, xfall,300, xspring, 250)
-                    draw_arrow(canvas, xfall,250, xspring, 250)
+                    draw_arrow(canvas, xfall,200, xspring, 200)
+                    draw_arrow(canvas, xfall,150, xspring, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2250":
-                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                    draw_arrow(canvas, xspring,150, xSfall, 150)
                 elif convert_tup_str(boxes[i]) == "MATH2500":
-                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                    draw_arrow(canvas, xspring,150, xSfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2850":
                     draw_arrow(canvas, xSfall,100, xSspring, 100)
                 elif convert_tup_str(boxes[i]) == "ELEC2750":
@@ -201,15 +207,15 @@ def draw_degree_audit2324(wnumber, studentname):
                 elif convert_tup_str(boxes[i]) == "ELEC3250":
                     draw_arrow(canvas, xSspring,200, xJfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC3600":
-                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                    draw_arrow(canvas, xSfall,200, xJsummer, 250)
                 elif convert_tup_str(boxes[i]) == "ELEC4075":
                     draw_arrow(canvas, xJfall,100, xSNspring, 100)
                 elif convert_tup_str(boxes[i]) == "MATH2100":
-                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                    draw_arrow(canvas, xspring,150, xSNspring, 200)
                 elif convert_tup_str(boxes[i]) == "ENGR5500":
                     draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
                 elif convert_tup_str(boxes[i]) == "MGMT3200":
-                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                    draw_arrow(canvas, xfall,150, xSNsummer, 150)
                 elif convert_tup_str(boxes[i]) == "COOP4500":
                     draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySspring += 50
@@ -219,14 +225,16 @@ def draw_degree_audit2324(wnumber, studentname):
                 text_x =  xJfall +box_width / 2  
                 canvas.create_text(text_x, yJfall + box_height / 2, text=boxes[i], anchor="center")
                 if convert_tup_str(boxes[i]) == "MATH1850":
-                     draw_arrow(canvas, xfall,250, xspring, 200)
+                     draw_arrow(canvas, xfall,150, xspring, 150)
+                elif convert_tup_str(boxes[i]) == "ENGL2200":
+                    draw_arrow(canvas, xfall, 250,xspring,250 )
                 elif convert_tup_str(boxes[i]) == "PHYS1750":
-                    draw_arrow(canvas, xfall,300, xspring, 250)
-                    draw_arrow(canvas, xfall,250, xspring, 250)
+                    draw_arrow(canvas, xfall,200, xspring, 200)
+                    draw_arrow(canvas, xfall,150, xspring, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2250":
-                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                    draw_arrow(canvas, xspring,150, xSfall, 150)
                 elif convert_tup_str(boxes[i]) == "MATH2500":
-                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                    draw_arrow(canvas, xspring,150, xSfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2850":
                     draw_arrow(canvas, xSfall,100, xSspring, 100)
                 elif convert_tup_str(boxes[i]) == "ELEC2750":
@@ -241,15 +249,15 @@ def draw_degree_audit2324(wnumber, studentname):
                 elif convert_tup_str(boxes[i]) == "ELEC3250":
                     draw_arrow(canvas, xSspring,200, xJfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC3600":
-                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                    draw_arrow(canvas, xSfall,200, xJsummer, 250)
                 elif convert_tup_str(boxes[i]) == "ELEC4075":
                     draw_arrow(canvas, xJfall,100, xSNspring, 100)
                 elif convert_tup_str(boxes[i]) == "MATH2100":
-                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                    draw_arrow(canvas, xspring,150, xSNspring, 200)
                 elif convert_tup_str(boxes[i]) == "ENGR5500":
                     draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
                 elif convert_tup_str(boxes[i]) == "MGMT3200":
-                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                    draw_arrow(canvas, xfall,150, xSNsummer, 150)
                 elif convert_tup_str(boxes[i]) == "COOP4500":
                     draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 yJfall += 50
@@ -259,14 +267,16 @@ def draw_degree_audit2324(wnumber, studentname):
                 text_x =  xJsummer +box_width / 2  
                 canvas.create_text(text_x, yJsummer + box_height / 2, text=boxes[i], anchor="center")
                 if convert_tup_str(boxes[i]) == "MATH1850":
-                     draw_arrow(canvas, xfall,250, xspring, 200)
+                     draw_arrow(canvas, xfall,150, xspring, 150)
+                elif convert_tup_str(boxes[i]) == "ENGL2200":
+                    draw_arrow(canvas, xfall, 250,xspring,250 )
                 elif convert_tup_str(boxes[i]) == "PHYS1750":
-                    draw_arrow(canvas, xfall,300, xspring, 250)
-                    draw_arrow(canvas, xfall,250, xspring, 250)
+                    draw_arrow(canvas, xfall,200, xspring, 200)
+                    draw_arrow(canvas, xfall,150, xspring, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2250":
-                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                    draw_arrow(canvas, xspring,150, xSfall, 150)
                 elif convert_tup_str(boxes[i]) == "MATH2500":
-                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                    draw_arrow(canvas, xspring,150, xSfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2850":
                     draw_arrow(canvas, xSfall,100, xSspring, 100)
                 elif convert_tup_str(boxes[i]) == "ELEC2750":
@@ -281,15 +291,15 @@ def draw_degree_audit2324(wnumber, studentname):
                 elif convert_tup_str(boxes[i]) == "ELEC3250":
                     draw_arrow(canvas, xSspring,200, xJfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC3600":
-                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                    draw_arrow(canvas, xSfall,200, xJsummer, 250)
                 elif convert_tup_str(boxes[i]) == "ELEC4075":
                     draw_arrow(canvas, xJfall,100, xSNspring, 100)
                 elif convert_tup_str(boxes[i]) == "MATH2100":
-                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                    draw_arrow(canvas, xspring,150, xSNspring, 200)
                 elif convert_tup_str(boxes[i]) == "ENGR5500":
                     draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
                 elif convert_tup_str(boxes[i]) == "MGMT3200":
-                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                    draw_arrow(canvas, xfall,150, xSNsummer, 150)
                 elif convert_tup_str(boxes[i]) == "COOP4500":
                     draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 yJsummer += 50
@@ -299,14 +309,16 @@ def draw_degree_audit2324(wnumber, studentname):
                 text_x =  xSNspring +box_width / 2  
                 canvas.create_text(text_x, ySNspring + box_height / 2, text=boxes[i], anchor="center")
                 if convert_tup_str(boxes[i]) == "MATH1850":
-                     draw_arrow(canvas, xfall,250, xspring, 200)
+                     draw_arrow(canvas, xfall,150, xspring, 150)
+                elif convert_tup_str(boxes[i]) == "ENGL2200":
+                    draw_arrow(canvas, xfall, 250,xspring,250 )
                 elif convert_tup_str(boxes[i]) == "PHYS1750":
-                    draw_arrow(canvas, xfall,300, xspring, 250)
-                    draw_arrow(canvas, xfall,250, xspring, 250)
+                    draw_arrow(canvas, xfall,200, xspring, 200)
+                    draw_arrow(canvas, xfall,150, xspring, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2250":
-                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                    draw_arrow(canvas, xspring,150, xSfall, 150)
                 elif convert_tup_str(boxes[i]) == "MATH2500":
-                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                    draw_arrow(canvas, xspring,150, xSfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2850":
                     draw_arrow(canvas, xSfall,100, xSspring, 100)
                 elif convert_tup_str(boxes[i]) == "ELEC2750":
@@ -321,15 +333,15 @@ def draw_degree_audit2324(wnumber, studentname):
                 elif convert_tup_str(boxes[i]) == "ELEC3250":
                     draw_arrow(canvas, xSspring,200, xJfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC3600":
-                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                    draw_arrow(canvas, xSfall,200, xJsummer, 250)
                 elif convert_tup_str(boxes[i]) == "ELEC4075":
                     draw_arrow(canvas, xJfall,100, xSNspring, 100)
                 elif convert_tup_str(boxes[i]) == "MATH2100":
-                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                    draw_arrow(canvas, xspring,150, xSNspring, 200)
                 elif convert_tup_str(boxes[i]) == "ENGR5500":
                     draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
                 elif convert_tup_str(boxes[i]) == "MGMT3200":
-                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                    draw_arrow(canvas, xfall,150, xSNsummer, 150)
                 elif convert_tup_str(boxes[i]) == "COOP4500":
                     draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySNspring += 50
@@ -339,14 +351,16 @@ def draw_degree_audit2324(wnumber, studentname):
                 text_x =  xSNsummer +box_width / 2  
                 canvas.create_text(text_x, ySNsummer + box_height / 2, text=boxes[i], anchor="center")
                 if convert_tup_str(boxes[i]) == "MATH1850":
-                     draw_arrow(canvas, xfall,250, xspring, 200)
+                     draw_arrow(canvas, xfall,150, xspring, 150)
+                elif convert_tup_str(boxes[i]) == "ENGL2200":
+                    draw_arrow(canvas, xfall, 250,xspring,250 )
                 elif convert_tup_str(boxes[i]) == "PHYS1750":
-                    draw_arrow(canvas, xfall,300, xspring, 250)
-                    draw_arrow(canvas, xfall,250, xspring, 250)
+                    draw_arrow(canvas, xfall,200, xspring, 200)
+                    draw_arrow(canvas, xfall,150, xspring, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2250":
-                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                    draw_arrow(canvas, xspring,150, xSfall, 150)
                 elif convert_tup_str(boxes[i]) == "MATH2500":
-                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                    draw_arrow(canvas, xspring,150, xSfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2850":
                     draw_arrow(canvas, xSfall,100, xSspring, 100)
                 elif convert_tup_str(boxes[i]) == "ELEC2750":
@@ -361,15 +375,15 @@ def draw_degree_audit2324(wnumber, studentname):
                 elif convert_tup_str(boxes[i]) == "ELEC3250":
                     draw_arrow(canvas, xSspring,200, xJfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC3600":
-                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                    draw_arrow(canvas, xSfall,200, xJsummer, 250)
                 elif convert_tup_str(boxes[i]) == "ELEC4075":
                     draw_arrow(canvas, xJfall,100, xSNspring, 100)
                 elif convert_tup_str(boxes[i]) == "MATH2100":
-                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                    draw_arrow(canvas, xspring,150, xSNspring, 200)
                 elif convert_tup_str(boxes[i]) == "ENGR5500":
                     draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
                 elif convert_tup_str(boxes[i]) == "MGMT3200":
-                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                    draw_arrow(canvas, xfall,150, xSNsummer, 150)
                 elif convert_tup_str(boxes[i]) == "COOP4500":
                     draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySNsummer += 50
@@ -379,14 +393,16 @@ def draw_degree_audit2324(wnumber, studentname):
                 text_x =  xSsummer +box_width / 2  
                 canvas.create_text(text_x, ySsummer + box_height / 2, text=boxes[i], anchor="center")
                 if convert_tup_str(boxes[i]) == "MATH1850":
-                     draw_arrow(canvas, xfall,250, xspring, 200)
+                     draw_arrow(canvas, xfall,150, xspring, 150)
+                elif convert_tup_str(boxes[i]) == "ENGL2200":
+                    draw_arrow(canvas, xfall, 250,xspring,250 )
                 elif convert_tup_str(boxes[i]) == "PHYS1750":
-                    draw_arrow(canvas, xfall,300, xspring, 250)
-                    draw_arrow(canvas, xfall,250, xspring, 250)
+                    draw_arrow(canvas, xfall,200, xspring, 200)
+                    draw_arrow(canvas, xfall,150, xspring, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2250":
-                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                    draw_arrow(canvas, xspring,150, xSfall, 150)
                 elif convert_tup_str(boxes[i]) == "MATH2500":
-                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                    draw_arrow(canvas, xspring,150, xSfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2850":
                     draw_arrow(canvas, xSfall,100, xSspring, 100)
                 elif convert_tup_str(boxes[i]) == "ELEC2750":
@@ -401,15 +417,15 @@ def draw_degree_audit2324(wnumber, studentname):
                 elif convert_tup_str(boxes[i]) == "ELEC3250":
                     draw_arrow(canvas, xSspring,200, xJfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC3600":
-                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                    draw_arrow(canvas, xSfall,200, xJsummer, 250)
                 elif convert_tup_str(boxes[i]) == "ELEC4075":
                     draw_arrow(canvas, xJfall,100, xSNspring, 100)
                 elif convert_tup_str(boxes[i]) == "MATH2100":
-                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                    draw_arrow(canvas, xspring,150, xSNspring, 200)
                 elif convert_tup_str(boxes[i]) == "ENGR5500":
                     draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
                 elif convert_tup_str(boxes[i]) == "MGMT3200":
-                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                    draw_arrow(canvas, xfall,150, xSNsummer, 150)
                 elif convert_tup_str(boxes[i]) == "COOP4500":
                     draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySsummer += 50
@@ -419,14 +435,16 @@ def draw_degree_audit2324(wnumber, studentname):
                 text_x =  xJspring +box_width / 2  
                 canvas.create_text(text_x, yJspring + box_height / 2, text=boxes[i], anchor="center")
                 if convert_tup_str(boxes[i]) == "MATH1850":
-                     draw_arrow(canvas, xfall,250, xspring, 200)
+                     draw_arrow(canvas, xfall,150, xspring, 150)
+                elif convert_tup_str(boxes[i]) == "ENGL2200":
+                    draw_arrow(canvas, xfall, 250,xspring,250 )
                 elif convert_tup_str(boxes[i]) == "PHYS1750":
-                    draw_arrow(canvas, xfall,300, xspring, 250)
-                    draw_arrow(canvas, xfall,250, xspring, 250)
+                    draw_arrow(canvas, xfall,200, xspring, 200)
+                    draw_arrow(canvas, xfall,150, xspring, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2250":
-                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                    draw_arrow(canvas, xspring,150, xSfall, 150)
                 elif convert_tup_str(boxes[i]) == "MATH2500":
-                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                    draw_arrow(canvas, xspring,150, xSfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2850":
                     draw_arrow(canvas, xSfall,100, xSspring, 100)
                 elif convert_tup_str(boxes[i]) == "ELEC2750":
@@ -441,15 +459,15 @@ def draw_degree_audit2324(wnumber, studentname):
                 elif convert_tup_str(boxes[i]) == "ELEC3250":
                     draw_arrow(canvas, xSspring,200, xJfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC3600":
-                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                    draw_arrow(canvas, xSfall,200, xJsummer, 250)
                 elif convert_tup_str(boxes[i]) == "ELEC4075":
                     draw_arrow(canvas, xJfall,100, xSNspring, 100)
                 elif convert_tup_str(boxes[i]) == "MATH2100":
-                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                    draw_arrow(canvas, xspring,150, xSNspring, 200)
                 elif convert_tup_str(boxes[i]) == "ENGR5500":
                     draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
                 elif convert_tup_str(boxes[i]) == "MGMT3200":
-                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                    draw_arrow(canvas, xfall,150, xSNsummer, 150)
                 elif convert_tup_str(boxes[i]) == "COOP4500":
                     draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 yJspring += 50
@@ -459,14 +477,16 @@ def draw_degree_audit2324(wnumber, studentname):
                 text_x =  xSNfall +box_width / 2  
                 canvas.create_text(text_x, ySNfall + box_height / 2, text=boxes[i], anchor="center")
                 if convert_tup_str(boxes[i]) == "MATH1850":
-                     draw_arrow(canvas, xfall,250, xspring, 200)
+                     draw_arrow(canvas, xfall,150, xspring, 150)
+                elif convert_tup_str(boxes[i]) == "ENGL2200":
+                    draw_arrow(canvas, xfall, 250,xspring,250 )
                 elif convert_tup_str(boxes[i]) == "PHYS1750":
-                    draw_arrow(canvas, xfall,300, xspring, 250)
-                    draw_arrow(canvas, xfall,250, xspring, 250)
+                    draw_arrow(canvas, xfall,200, xspring, 200)
+                    draw_arrow(canvas, xfall,150, xspring, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2250":
-                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                    draw_arrow(canvas, xspring,150, xSfall, 150)
                 elif convert_tup_str(boxes[i]) == "MATH2500":
-                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                    draw_arrow(canvas, xspring,150, xSfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC2850":
                     draw_arrow(canvas, xSfall,100, xSspring, 100)
                 elif convert_tup_str(boxes[i]) == "ELEC2750":
@@ -481,15 +501,15 @@ def draw_degree_audit2324(wnumber, studentname):
                 elif convert_tup_str(boxes[i]) == "ELEC3250":
                     draw_arrow(canvas, xSspring,200, xJfall, 200)
                 elif convert_tup_str(boxes[i]) == "ELEC3600":
-                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                    draw_arrow(canvas, xSfall,200, xJsummer, 250)
                 elif convert_tup_str(boxes[i]) == "ELEC4075":
                     draw_arrow(canvas, xJfall,100, xSNspring, 100)
                 elif convert_tup_str(boxes[i]) == "MATH2100":
-                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                    draw_arrow(canvas, xspring,150, xSNspring, 200)
                 elif convert_tup_str(boxes[i]) == "ENGR5500":
                     draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
                 elif convert_tup_str(boxes[i]) == "MGMT3200":
-                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                    draw_arrow(canvas, xfall,150, xSNsummer, 150)
                 elif convert_tup_str(boxes[i]) == "COOP4500":
                     draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySNfall += 50

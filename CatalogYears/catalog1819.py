@@ -103,6 +103,8 @@ def draw_degree_audit1819(wnumber, studentname):
                 canvas.create_text(text_x, yspring + box_height / 2, text=boxes[i], anchor="center")
                 if convert_tup_str(boxes[i]) == "MATH1850":
                      draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "ENGL2200":
+                    draw_arrow(canvas, xfall, 150,xspring,300 )
                 elif convert_tup_str(boxes[i]) == "PHYS1750":
                     draw_arrow(canvas, xfall,300, xspring, 250)
                     draw_arrow(canvas, xfall,250, xspring, 250)
