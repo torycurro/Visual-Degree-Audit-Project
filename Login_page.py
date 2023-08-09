@@ -1,3 +1,4 @@
+from re import L
 from tkinter import *
 from Sandbox import *
 import tkinter as tk
@@ -138,9 +139,6 @@ class MainApplication(tk.Tk):
         self.AdminRemoveCoursePage.place_forget()
         self.EditStudentDegreeAuditPage.place_forget()
         
-
-
-    
     def show_AdminRemoveCoursePage(self):
         width_screen= self.winfo_screenwidth()
         height_screen= self.winfo_screenheight()
@@ -186,7 +184,6 @@ class MainApplication(tk.Tk):
 class LoginFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master, width = 350, height = 500, bg="White")
-
         
         self.label = tk.Label(self, text="Enter Username & Password", font=('Times',14), bg="white")
         self.label.place(x=20, y=40)
@@ -351,14 +348,13 @@ class AdminRemoveCoursePage(tk.Frame):
     def __init__(self, master):
         super().__init__(master, width = 350, height = 500, bg="white")
 
-         
         self.label = tk.Label(self, text="Remove Course Page", font=('Times',12), bg="white")
         self.label.place(x=20, y=30)
 
         self.logout_button = tk.Button(self, text="Back", font=('Times',12),  bg="red", fg="white", bd=0, command=self.Back)
         self.logout_button.place(x=285, y=30)
 
-        self.CRN_label = tk.Label(self, text="Enter CRN:", font=('Times',12), bg="white")
+        self.CRN_label = tk.Label(self, text="Enter Course Number:", font=('Times',12), bg="white")
         self.CRN_label.place(x=20, y=70)
         self.CRN_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
         self.CRN_entry.place(x=20, y=110)
@@ -367,19 +363,50 @@ class AdminRemoveCoursePage(tk.Frame):
         self.remove_button.place(x=20, y=150)
 
     def RemoveCourse(self):
-      CRN = self.CRN_entry.get()
-      self.CRN_entry.delete(0, END)
-       
-        # call the Teacher class to print data base
-      Admin.Admin.remove_Course(self, CRN)
+        CRN_label = self.CRN_entry.get()
+        removed = 0
+
+        database = sqlite3.connect("Database/DegreeViz-2R4.db")
+        cursor = database.cursor()
+
+        cursor.execute("SELECT * FROM Courses1819 WHERE Course = '" + CRN_label + "'")
+        course = cursor.fetchone()
+
+        if (course != None):
+            cursor.execute("DELETE FROM Courses1819 WHERE Course = '" + CRN_label + "'")
+            database.commit()
+            removed = 1
+
+        cursor.execute("SELECT * FROM Courses2021 WHERE Course = '" + CRN_label + "'")
+        course = cursor.fetchone()
+
+        if (course != None):
+            cursor.execute("DELETE FROM Courses2021 WHERE Course = '" + CRN_label + "'")
+            database.commit()
+            removed = 1
+
+        cursor.execute("SELECT * FROM Courses2324 WHERE Course = '" + CRN_label + "'")
+        course = cursor.fetchone()
+
+        if (course != None):
+            cursor.execute("DELETE FROM Courses2324 WHERE Course = '" + CRN_label + "'")
+            database.commit()
+            removed = 1
+  
+        if (removed == 0):
+            messagebox.showerror("Failed!", "Invalid entry; Course " + CRN_label + " does not exist.")
+        else:
+            messagebox.showinfo("Success!", "Course " + CRN_label + " has been successfully removed.")
+
+        database.close()
         
     def Back(self):
         self.master.show_Admin_frame()
 
 class AdminAddCoursePage(tk.Frame):
-    def __init__(self, master):
-        super().__init__(master, width = 350, height = 500, bg="white")
-        
+    def init(self, master):
+        super().init(master, width = 350, height = 500, bg="white")
+
         self.label = tk.Label(self, text="Add Course Page", font=('Times',12), bg="white")
         self.label.place(x=20, y=30)
 
@@ -391,38 +418,28 @@ class AdminAddCoursePage(tk.Frame):
         self.CRN_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
         self.CRN_entry.place(x=20, y=110)
 
-        self.CRN_label = tk.Label(self, text="Enter Course Name:", font=('Times',12), bg="white")
-        self.CRN_label.place(x=20, y=150)
-        self.CRN_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
-        self.CRN_entry.place(x=20, y=190)
+        self.course_label = tk.Label(self, text="Enter Course Name:", font=('Times',12), bg="white")
+        self.course_label.place(x=20, y=150)
+        self.course_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
+        self.course_entry.place(x=20, y=190)
 
-        self.CRN_label = tk.Label(self, text="Enter Course Day:", font=('Times',12), bg="white")
-        self.CRN_label.place(x=20, y=230)
-        self.CRN_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
-        self.CRN_entry.place(x=20, y=270)
-
-        self.CRN_label = tk.Label(self, text="Enter Course Time:", font=('Times',12), bg="white")
-        self.CRN_label.place(x=20, y=310)
-        self.CRN_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
-        self.CRN_entry.place(x=20, y=350)
-
-        self.CRN_label = tk.Label(self, text="Enter Instructor Name:", font=('Times',12), bg="white")
-        self.CRN_label.place(x=20, y=390)
-        self.CRN_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
-        self.CRN_entry.place(x=20, y=430)
+        self.instructor_label = tk.Label(self, text="Enter Instructor Name:", font=('Times',12), bg="white")
+        self.instructor_label.place(x=20, y=230)
+        self.instructor_entry = tk.Entry(self, highlightbackground='black', highlightthickness=1,bd=0,width=34,font=('Times',14))
+        self.instructor_entry.place(x=20, y=270)
 
         self.add_button = tk.Button(self, text="Add Course", font=('Times',12),  bg="black", fg="white", bd=0, command=self.AddCourse)
-        self.add_button.place(x=20, y=460)
-               
+        self.add_button.place(x=20, y=310)
+
     def AddCourse(self):
         CRN = self.CRN_entry.get()
         self.CRN_entry.delete(0, END)
-       
-        # call the Teacher class to print data base
+
+# call the Teacher class to print data base
         Admin.Admin.add_Course(self, CRN)
-        
+
     def Back(self):
-        self.master.show_Admin_frame()
+        self.master.show_EditStudentDegreeAuditPage()
 
 
 class EditStudentDegreeAuditPage(tk.Frame):
