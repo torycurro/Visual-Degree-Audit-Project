@@ -75,66 +75,408 @@ def draw_degree_audit2324(wnumber, studentname):
                 canvas.create_rectangle(xfall, yfall, xfall + box_width, yfall + box_height, fill=fillCollor)
                 text_x = xfall + box_width / 2 
                 canvas.create_text(text_x, yfall + box_height / 2, text=boxes[i], anchor="center")
+                
                 yfall += 50
             elif (i>=5 and i<10):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
                 canvas.create_rectangle(xspring, yspring, xspring + box_width, yspring + box_height, fill=fillCollor)
                 text_x = xspring +box_width / 2  
                 canvas.create_text(text_x, yspring + box_height / 2, text=boxes[i], anchor="center")
+                if convert_tup_str(boxes[i]) == "MATH1850":
+                     draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "PHYS1750":
+                    draw_arrow(canvas, xfall,300, xspring, 250)
+                    draw_arrow(canvas, xfall,250, xspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC2250":
+                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2500":
+                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC2850":
+                    draw_arrow(canvas, xSfall,100, xSspring, 100)
+                elif convert_tup_str(boxes[i]) == "ELEC2750":
+                    draw_arrow(canvas, xSfall,150, xSspring, 150)
+                    draw_arrow(canvas, xSfall,200, xSspring, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2025":
+                    draw_arrow(canvas, xspring,200, xSspring, 200)
+                elif convert_tup_str(boxes[i]) == "MATH2300":
+                    draw_arrow(canvas, xfall,250, xSspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC3150":
+                    draw_arrow(canvas, xSspring,150, xJfall, 150)
+                elif convert_tup_str(boxes[i]) == "ELEC3250":
+                    draw_arrow(canvas, xSspring,200, xJfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC3600":
+                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC4075":
+                    draw_arrow(canvas, xJfall,100, xSNspring, 100)
+                elif convert_tup_str(boxes[i]) == "MATH2100":
+                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                elif convert_tup_str(boxes[i]) == "ENGR5500":
+                    draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
+                elif convert_tup_str(boxes[i]) == "MGMT3200":
+                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                elif convert_tup_str(boxes[i]) == "COOP4500":
+                    draw_arrow(canvas, xJspring,100, xSNfall, 100)
+
                 yspring += 50
             elif (i>=10 and i<13):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
                 canvas.create_rectangle(xSfall, ySfall, xSfall + box_width, ySfall + box_height, fill=fillCollor)
                 text_x = xSfall +box_width / 2  
                 canvas.create_text(text_x, ySfall + box_height / 2, text=boxes[i], anchor="center")
+                if convert_tup_str(boxes[i]) == "MATH1850":
+                     draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "PHYS1750":
+                    draw_arrow(canvas, xfall,300, xspring, 250)
+                    draw_arrow(canvas, xfall,250, xspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC2250":
+                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2500":
+                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC2850":
+                    draw_arrow(canvas, xSfall,100, xSspring, 100)
+                elif convert_tup_str(boxes[i]) == "ELEC2750":
+                    draw_arrow(canvas, xSfall,150, xSspring, 150)
+                    draw_arrow(canvas, xSfall,200, xSspring, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2025":
+                    draw_arrow(canvas, xspring,200, xSspring, 200)
+                elif convert_tup_str(boxes[i]) == "MATH2300":
+                    draw_arrow(canvas, xfall,250, xSspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC3150":
+                    draw_arrow(canvas, xSspring,150, xJfall, 150)
+                elif convert_tup_str(boxes[i]) == "ELEC3250":
+                    draw_arrow(canvas, xSspring,200, xJfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC3600":
+                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC4075":
+                    draw_arrow(canvas, xJfall,100, xSNspring, 100)
+                elif convert_tup_str(boxes[i]) == "MATH2100":
+                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                elif convert_tup_str(boxes[i]) == "ENGR5500":
+                    draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
+                elif convert_tup_str(boxes[i]) == "MGMT3200":
+                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                elif convert_tup_str(boxes[i]) == "COOP4500":
+                    draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySfall += 50
             elif (i>=13 and i<17):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
                 canvas.create_rectangle( xSspring, ySspring,  xSspring + box_width, ySspring + box_height, fill=fillCollor)
                 text_x =  xSspring +box_width / 2  
                 canvas.create_text(text_x, ySspring + box_height / 2, text=boxes[i], anchor="center")
+                if convert_tup_str(boxes[i]) == "MATH1850":
+                     draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "PHYS1750":
+                    draw_arrow(canvas, xfall,300, xspring, 250)
+                    draw_arrow(canvas, xfall,250, xspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC2250":
+                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2500":
+                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC2850":
+                    draw_arrow(canvas, xSfall,100, xSspring, 100)
+                elif convert_tup_str(boxes[i]) == "ELEC2750":
+                    draw_arrow(canvas, xSfall,150, xSspring, 150)
+                    draw_arrow(canvas, xSfall,200, xSspring, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2025":
+                    draw_arrow(canvas, xspring,200, xSspring, 200)
+                elif convert_tup_str(boxes[i]) == "MATH2300":
+                    draw_arrow(canvas, xfall,250, xSspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC3150":
+                    draw_arrow(canvas, xSspring,150, xJfall, 150)
+                elif convert_tup_str(boxes[i]) == "ELEC3250":
+                    draw_arrow(canvas, xSspring,200, xJfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC3600":
+                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC4075":
+                    draw_arrow(canvas, xJfall,100, xSNspring, 100)
+                elif convert_tup_str(boxes[i]) == "MATH2100":
+                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                elif convert_tup_str(boxes[i]) == "ENGR5500":
+                    draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
+                elif convert_tup_str(boxes[i]) == "MGMT3200":
+                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                elif convert_tup_str(boxes[i]) == "COOP4500":
+                    draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySspring += 50
             elif (i>=17 and i<20):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
                 canvas.create_rectangle( xJfall, yJfall,  xJfall + box_width, yJfall + box_height, fill=fillCollor)
                 text_x =  xJfall +box_width / 2  
                 canvas.create_text(text_x, yJfall + box_height / 2, text=boxes[i], anchor="center")
+                if convert_tup_str(boxes[i]) == "MATH1850":
+                     draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "PHYS1750":
+                    draw_arrow(canvas, xfall,300, xspring, 250)
+                    draw_arrow(canvas, xfall,250, xspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC2250":
+                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2500":
+                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC2850":
+                    draw_arrow(canvas, xSfall,100, xSspring, 100)
+                elif convert_tup_str(boxes[i]) == "ELEC2750":
+                    draw_arrow(canvas, xSfall,150, xSspring, 150)
+                    draw_arrow(canvas, xSfall,200, xSspring, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2025":
+                    draw_arrow(canvas, xspring,200, xSspring, 200)
+                elif convert_tup_str(boxes[i]) == "MATH2300":
+                    draw_arrow(canvas, xfall,250, xSspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC3150":
+                    draw_arrow(canvas, xSspring,150, xJfall, 150)
+                elif convert_tup_str(boxes[i]) == "ELEC3250":
+                    draw_arrow(canvas, xSspring,200, xJfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC3600":
+                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC4075":
+                    draw_arrow(canvas, xJfall,100, xSNspring, 100)
+                elif convert_tup_str(boxes[i]) == "MATH2100":
+                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                elif convert_tup_str(boxes[i]) == "ENGR5500":
+                    draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
+                elif convert_tup_str(boxes[i]) == "MGMT3200":
+                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                elif convert_tup_str(boxes[i]) == "COOP4500":
+                    draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 yJfall += 50
             elif (i>=20 and i<24):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
                 canvas.create_rectangle( xJsummer, yJsummer,  xJsummer + box_width, yJsummer + box_height, fill=fillCollor)
                 text_x =  xJsummer +box_width / 2  
                 canvas.create_text(text_x, yJsummer + box_height / 2, text=boxes[i], anchor="center")
+                if convert_tup_str(boxes[i]) == "MATH1850":
+                     draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "PHYS1750":
+                    draw_arrow(canvas, xfall,300, xspring, 250)
+                    draw_arrow(canvas, xfall,250, xspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC2250":
+                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2500":
+                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC2850":
+                    draw_arrow(canvas, xSfall,100, xSspring, 100)
+                elif convert_tup_str(boxes[i]) == "ELEC2750":
+                    draw_arrow(canvas, xSfall,150, xSspring, 150)
+                    draw_arrow(canvas, xSfall,200, xSspring, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2025":
+                    draw_arrow(canvas, xspring,200, xSspring, 200)
+                elif convert_tup_str(boxes[i]) == "MATH2300":
+                    draw_arrow(canvas, xfall,250, xSspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC3150":
+                    draw_arrow(canvas, xSspring,150, xJfall, 150)
+                elif convert_tup_str(boxes[i]) == "ELEC3250":
+                    draw_arrow(canvas, xSspring,200, xJfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC3600":
+                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC4075":
+                    draw_arrow(canvas, xJfall,100, xSNspring, 100)
+                elif convert_tup_str(boxes[i]) == "MATH2100":
+                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                elif convert_tup_str(boxes[i]) == "ENGR5500":
+                    draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
+                elif convert_tup_str(boxes[i]) == "MGMT3200":
+                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                elif convert_tup_str(boxes[i]) == "COOP4500":
+                    draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 yJsummer += 50
             elif (i>=24 and i<27):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
                 canvas.create_rectangle( xSNspring, ySNspring,  xSNspring + box_width, ySNspring + box_height, fill=fillCollor)
                 text_x =  xSNspring +box_width / 2  
                 canvas.create_text(text_x, ySNspring + box_height / 2, text=boxes[i], anchor="center")
+                if convert_tup_str(boxes[i]) == "MATH1850":
+                     draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "PHYS1750":
+                    draw_arrow(canvas, xfall,300, xspring, 250)
+                    draw_arrow(canvas, xfall,250, xspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC2250":
+                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2500":
+                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC2850":
+                    draw_arrow(canvas, xSfall,100, xSspring, 100)
+                elif convert_tup_str(boxes[i]) == "ELEC2750":
+                    draw_arrow(canvas, xSfall,150, xSspring, 150)
+                    draw_arrow(canvas, xSfall,200, xSspring, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2025":
+                    draw_arrow(canvas, xspring,200, xSspring, 200)
+                elif convert_tup_str(boxes[i]) == "MATH2300":
+                    draw_arrow(canvas, xfall,250, xSspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC3150":
+                    draw_arrow(canvas, xSspring,150, xJfall, 150)
+                elif convert_tup_str(boxes[i]) == "ELEC3250":
+                    draw_arrow(canvas, xSspring,200, xJfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC3600":
+                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC4075":
+                    draw_arrow(canvas, xJfall,100, xSNspring, 100)
+                elif convert_tup_str(boxes[i]) == "MATH2100":
+                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                elif convert_tup_str(boxes[i]) == "ENGR5500":
+                    draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
+                elif convert_tup_str(boxes[i]) == "MGMT3200":
+                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                elif convert_tup_str(boxes[i]) == "COOP4500":
+                    draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySNspring += 50
             elif (i>=27 and i<29):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
                 canvas.create_rectangle( xSNsummer, ySNsummer,  xSNsummer + box_width, ySNsummer + box_height, fill=fillCollor)
                 text_x =  xSNsummer +box_width / 2  
                 canvas.create_text(text_x, ySNsummer + box_height / 2, text=boxes[i], anchor="center")
+                if convert_tup_str(boxes[i]) == "MATH1850":
+                     draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "PHYS1750":
+                    draw_arrow(canvas, xfall,300, xspring, 250)
+                    draw_arrow(canvas, xfall,250, xspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC2250":
+                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2500":
+                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC2850":
+                    draw_arrow(canvas, xSfall,100, xSspring, 100)
+                elif convert_tup_str(boxes[i]) == "ELEC2750":
+                    draw_arrow(canvas, xSfall,150, xSspring, 150)
+                    draw_arrow(canvas, xSfall,200, xSspring, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2025":
+                    draw_arrow(canvas, xspring,200, xSspring, 200)
+                elif convert_tup_str(boxes[i]) == "MATH2300":
+                    draw_arrow(canvas, xfall,250, xSspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC3150":
+                    draw_arrow(canvas, xSspring,150, xJfall, 150)
+                elif convert_tup_str(boxes[i]) == "ELEC3250":
+                    draw_arrow(canvas, xSspring,200, xJfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC3600":
+                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC4075":
+                    draw_arrow(canvas, xJfall,100, xSNspring, 100)
+                elif convert_tup_str(boxes[i]) == "MATH2100":
+                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                elif convert_tup_str(boxes[i]) == "ENGR5500":
+                    draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
+                elif convert_tup_str(boxes[i]) == "MGMT3200":
+                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                elif convert_tup_str(boxes[i]) == "COOP4500":
+                    draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySNsummer += 50
             elif (i==29):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
                 canvas.create_rectangle( xSsummer, ySsummer,  xSsummer + box_width, ySsummer + box_height, fill=fillCollor)
                 text_x =  xSsummer +box_width / 2  
                 canvas.create_text(text_x, ySsummer + box_height / 2, text=boxes[i], anchor="center")
+                if convert_tup_str(boxes[i]) == "MATH1850":
+                     draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "PHYS1750":
+                    draw_arrow(canvas, xfall,300, xspring, 250)
+                    draw_arrow(canvas, xfall,250, xspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC2250":
+                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2500":
+                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC2850":
+                    draw_arrow(canvas, xSfall,100, xSspring, 100)
+                elif convert_tup_str(boxes[i]) == "ELEC2750":
+                    draw_arrow(canvas, xSfall,150, xSspring, 150)
+                    draw_arrow(canvas, xSfall,200, xSspring, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2025":
+                    draw_arrow(canvas, xspring,200, xSspring, 200)
+                elif convert_tup_str(boxes[i]) == "MATH2300":
+                    draw_arrow(canvas, xfall,250, xSspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC3150":
+                    draw_arrow(canvas, xSspring,150, xJfall, 150)
+                elif convert_tup_str(boxes[i]) == "ELEC3250":
+                    draw_arrow(canvas, xSspring,200, xJfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC3600":
+                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC4075":
+                    draw_arrow(canvas, xJfall,100, xSNspring, 100)
+                elif convert_tup_str(boxes[i]) == "MATH2100":
+                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                elif convert_tup_str(boxes[i]) == "ENGR5500":
+                    draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
+                elif convert_tup_str(boxes[i]) == "MGMT3200":
+                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                elif convert_tup_str(boxes[i]) == "COOP4500":
+                    draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySsummer += 50
             elif (i==30):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
                 canvas.create_rectangle( xJspring, yJspring,  xJspring + box_width, yJspring + box_height, fill=fillCollor)
                 text_x =  xJspring +box_width / 2  
                 canvas.create_text(text_x, yJspring + box_height / 2, text=boxes[i], anchor="center")
+                if convert_tup_str(boxes[i]) == "MATH1850":
+                     draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "PHYS1750":
+                    draw_arrow(canvas, xfall,300, xspring, 250)
+                    draw_arrow(canvas, xfall,250, xspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC2250":
+                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2500":
+                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC2850":
+                    draw_arrow(canvas, xSfall,100, xSspring, 100)
+                elif convert_tup_str(boxes[i]) == "ELEC2750":
+                    draw_arrow(canvas, xSfall,150, xSspring, 150)
+                    draw_arrow(canvas, xSfall,200, xSspring, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2025":
+                    draw_arrow(canvas, xspring,200, xSspring, 200)
+                elif convert_tup_str(boxes[i]) == "MATH2300":
+                    draw_arrow(canvas, xfall,250, xSspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC3150":
+                    draw_arrow(canvas, xSspring,150, xJfall, 150)
+                elif convert_tup_str(boxes[i]) == "ELEC3250":
+                    draw_arrow(canvas, xSspring,200, xJfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC3600":
+                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC4075":
+                    draw_arrow(canvas, xJfall,100, xSNspring, 100)
+                elif convert_tup_str(boxes[i]) == "MATH2100":
+                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                elif convert_tup_str(boxes[i]) == "ENGR5500":
+                    draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
+                elif convert_tup_str(boxes[i]) == "MGMT3200":
+                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                elif convert_tup_str(boxes[i]) == "COOP4500":
+                    draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 yJspring += 50
             elif (i==31):
                 fillCollor = grade(convert_tup_str(boxes[i]),wnumber)
                 canvas.create_rectangle( xSNfall, ySNfall,  xSNfall + box_width, ySNfall + box_height, fill=fillCollor)
                 text_x =  xSNfall +box_width / 2  
                 canvas.create_text(text_x, ySNfall + box_height / 2, text=boxes[i], anchor="center")
+                if convert_tup_str(boxes[i]) == "MATH1850":
+                     draw_arrow(canvas, xfall,250, xspring, 200)
+                elif convert_tup_str(boxes[i]) == "PHYS1750":
+                    draw_arrow(canvas, xfall,300, xspring, 250)
+                    draw_arrow(canvas, xfall,250, xspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC2250":
+                    draw_arrow(canvas, xspring,200, xSfall, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2500":
+                    draw_arrow(canvas, xspring,200, xSfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC2850":
+                    draw_arrow(canvas, xSfall,100, xSspring, 100)
+                elif convert_tup_str(boxes[i]) == "ELEC2750":
+                    draw_arrow(canvas, xSfall,150, xSspring, 150)
+                    draw_arrow(canvas, xSfall,200, xSspring, 150)
+                elif convert_tup_str(boxes[i]) == "MATH2025":
+                    draw_arrow(canvas, xspring,200, xSspring, 200)
+                elif convert_tup_str(boxes[i]) == "MATH2300":
+                    draw_arrow(canvas, xfall,250, xSspring, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC3150":
+                    draw_arrow(canvas, xSspring,150, xJfall, 150)
+                elif convert_tup_str(boxes[i]) == "ELEC3250":
+                    draw_arrow(canvas, xSspring,200, xJfall, 200)
+                elif convert_tup_str(boxes[i]) == "ELEC3600":
+                    draw_arrow(canvas, xSspring,200, xJsummer, 250)
+                elif convert_tup_str(boxes[i]) == "ELEC4075":
+                    draw_arrow(canvas, xJfall,100, xSNspring, 100)
+                elif convert_tup_str(boxes[i]) == "MATH2100":
+                    draw_arrow(canvas, xspring,200, xSNspring, 200)
+                elif convert_tup_str(boxes[i]) == "ENGR5500":
+                    draw_arrow(canvas, xSNspring,150, xSNsummer, 100)
+                elif convert_tup_str(boxes[i]) == "MGMT3200":
+                    draw_arrow(canvas, xfall,250, xSNsummer, 150)
+                elif convert_tup_str(boxes[i]) == "COOP4500":
+                    draw_arrow(canvas, xJspring,100, xSNfall, 100)
                 ySNfall += 50
             
 
